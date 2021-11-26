@@ -15,10 +15,38 @@ class Product(models.Model):
 
     class Meta:
         verbose_name = 'produto'
-        verbose_name_plural = 'produtos'
 
     def __str__(self):
         return self.name
+
+    def get_albums(self):
+        return Album.objects.filter(product=self)
+
+    def get_pictures(self):
+        albums = self.get_albums()
+        if albums:
+            return Picture.objects.filter(album=albums.first())
+        else:
+            return None
+
+class Album(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='produto')
+
+    def __str__(self):
+        return f'{self.product}'
+    
+    def get_pictures(self):
+        pictures = Picture.objects.filter(album=self)
+        if pictures:
+            return pictures.order_by('index')
+
+class Picture(models.Model):
+    img = models.ImageField(verbose_name='imagem')
+    index = models.IntegerField(verbose_name='índice')
+    album = models.ForeignKey(Album, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.index} {self.img.name}'
 
 class Review(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='produto')

@@ -1,0 +1,5 @@
+<h1>{{ product.name }}</h1>
+
+{% for picture in product.get_pictures %}
+    <img src="{{ picture.img.url }}" alt="Foto #{{ picture.index }}">
+{% endfor %}

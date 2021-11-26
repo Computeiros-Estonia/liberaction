@@ -5,6 +5,10 @@ name = "pypi"
 
 [packages]
 django = "*"
+pillow = "*"
+django-pytest = "*"
+pytest = "*"
+pytest-django = "*"
 
 [dev-packages]
 
