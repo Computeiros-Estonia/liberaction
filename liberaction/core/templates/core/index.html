@@ -1,1 +1,229 @@
-<h1>Página principal</h1>
+<!-- <h1>Página principal</h1>
+
+{% for product in products %}
+        <h1>{{ product }}</h1>
+        <h3>{{ product.description }}</h3>
+        
+        {% for tag in product.tags.all %}
+                <h3>{{ tag }}</h3>
+        {% endfor %}
+{% endfor %} -->
+
+<!DOCTYPE html>
+<html lang="ptbr">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>LiberAction</title>
+        <base href="/">
+
+        <link rel="stylesheet"  href="../static/css/styles.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+    </head>
+    
+    <body>
+       
+        <!-- Site Header -->
+        <div class="header">
+            <div class="navbar">
+                <div class="mobile-menu">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </div>    
+                <div class="container1">
+                    <img src="../static/images/logo.png">
+                    <input type="text" placeholder="Buscar produto, serviço e muito mais!">
+                    
+                    <div>
+                        <h3>Bem vindo!
+                            <span><a href="login/">Entre</a> ou <a href="register/">Cadastre-se</a></span>
+                        </h3>
+                    </div>
+                    <div class="icons">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2/2267.png" alt="">
+                        <img src="https://cdn-icons-png.flaticon.com/512/126/126510.png" alt="">
+                        
+                    </div>
+                    <div class="mobile-search">
+                        <div class="search-icon"></div>
+                        <div class="search-input">
+                            <input id="search-text" type="text" placeholder="Search">
+                        </div>
+                        <span class="clear"></span>
+                    </div>
+                    
+                </div>    
+            </div>
+            <ul class="menu-container">
+                <li><a href="#">Categorias</a></li> 
+                <li><a href="#">Ofertas do dia</a></li>
+                <li><a href="#">Aulas particulares</a></li>
+                <li><a href="#">Moda Ancap</a></li>
+                <li><a href="#">Anuncie Conosco</a></li>
+            </ul>
+            
+        </div>
+        
+    <div class="content">
+        
+       <!-- Banner starts -->
+        <div class="banner">
+            <img class="selected" src="https://images.unsplash.com/photo-1605792657660-596af9009e82?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1402&q=80" alt="">
+            <img src="https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80" alt="">
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80" alt="">
+            <div class="control">
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+            </div>
+        </div>
+        
+        <!-- Featured Products starts  -->
+        {% for product in products %}
+            <h1>{{ product }}</h1>
+            <h3>{{ product.description }}</h3>
+        
+            {% for tag in product.tags.all %}
+                <h3>{{ tag }}</h3>
+            {% endfor %}
+        {% endfor %}
+        <!------------------------------->
+    
+    
+    
+    
+    <!--------------------------------------   Follow Us on Social Media starts  ---------------------------------------------------------->
+    <div class="follow-us">
+        <div class="container-follow">
+            <h3> <span>LiberAction</span> nas redes sociais</h3>
+            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111392.png">
+            <img src="https://cdn-icons-png.flaticon.com/512/1384/1384031.png">
+        </div>
+    </div>
+    <!--------------------------------------------------------------------------------------------------------------------------------------->
+    
+    
+    
+    
+    <!---------------------------------------------   Reading Suggestions starts ---------------------------------------------------------->
+    <div class="categories">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-3">
+                    <!-- <img src="images/category-1.jpg" alt=""> -->
+                    <h4>Porque um país deve <br> apoiar o empreendedorismo?</h4>
+                </div>
+                <div class="col-3">
+                    <!-- <img src="images/category-2.jpg" alt=""> -->
+                    <h4>Como o Estado dificulta o <br> acesso a saúde?</h4>
+                </div>
+                <div class="col-3">
+                    <!-- <img src="images/category-3.jpg" alt=""> -->
+                    <h4>5 sugestões de leitura para <br> empreendedores</h4>
+                </div>
+            </div> 
+        </div>       
+    </div>
+    <!--------------------------------------------------------------------------------------------------------------------------------------->
+    
+    
+    
+    <!--------------------------------------------------------- Newsletter starts ------------------------------------------------------------> 
+    <div class="newsletter">
+        <div class="container-newsletter">
+            <p>Quer receber nossas</p> 
+            <p><span>NOVIDADES?</span></p>
+            <h6>CADASTRE SEU E-MAIL E RECEBA EM PRIMEIRA MÃO TUDO SOBRE A VISTA DIREITA</h6>  
+        </div>
+        
+        <div class="container-cadastro">
+            <input type="text" placeholder="Digite seu nome">
+            <input type="text" placeholder="Digite seu e-mail">
+            <button>Cadastrar</button>
+        </div>
+    </div>
+    
+    <!--------------------------------------------------------------------------------------------------------------------------------------->
+    
+    
+    
+    
+    
+    <!----------------------------------------------------- Most Requested starts -----------------------------------------------------------> 
+    
+    <div class="categories">
+        <div class="small-container">
+            <h2 class="title">Mais Procurados</h2>
+            <div class="row">
+                <div class="col-3">
+                    <!-- <img src="images/category-1.jpg" alt=""> -->
+                    <h4>Produto 1</h4>
+                </div>
+                <div class="col-3">
+                    <!-- <img src="images/category-2.jpg" alt=""> -->
+                    <h4>Produto 2</h4>
+                </div>
+                <div class="col-3">
+                    <!-- <img src="images/category-3.jpg" alt=""> -->
+                    <h4>Produto 3</h4>
+                </div>
+            </div> 
+        </div>       
+    </div>
+    <!--------------------------------------------------------------------------------------------------------------------------------------->
+    
+    
+    
+    
+    <!--------------------------------------------------------- Footer starts ---------------------------------------------------------------> 
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-3">
+                    <h3>INSTITUCIONAL</h3>
+                    <ul>
+                        <li>Politica de Privacidade</li>
+                        <li>Nossos valores</li>
+                    </ul>
+                </div>
+                <div class="footer-col-3">
+                    <h3>ATENDIMENTO</h3>
+                    <ul>
+                        <li>Dúvidas Frequentes</li>
+                        <li>Troca e Devoluções</li>
+                        <li>Whatsapp<br> (00)00000-0000 </li>
+                    </ul>
+                </div>
+                <div class="footer-col-3">
+                    <h3>SUA CONTA</h3>
+                    <ul>
+                        <li>Acesso ao Painel</li>
+                        <li>Meus Pedidos</li>
+                        <li>Meus Dados</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col-4">
+                    <h3>FORMAS DE PAGAMENTO</h3>
+                    
+                </div>
+                
+                <div class="footer-col-4">
+                    <h3>REDES SOCIAIS</h3>
+                    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111392.png">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1384/1384031.png">
+                    
+                </div>
+            </div>
+            <p class="copyright">2021 - Powered by Estonia Tech</p>
+        </div>
+    </div>
+</div>
+
+    <script src="../static/js/script.js"></script>    
+</body>
+</html>

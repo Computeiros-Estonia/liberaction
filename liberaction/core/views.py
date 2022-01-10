@@ -9,6 +9,12 @@ def index(request):
 
 def product(request, pk):
     context = {
-        'product': Product.objects.get(id=pk),
+        'product': Product.objects.get(id=pk),      
     }
-    return render(request, 'core/product.html', context)
+    return render(request, 'core/product.html', context) 
+
+def register(request):
+    return render(request, 'core/register.html')
+
+def login(request):
+    return render(request, 'core/login.html')
