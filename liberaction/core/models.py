@@ -22,12 +22,22 @@ class Product(models.Model):
     def get_albums(self):
         return Album.objects.filter(product=self)
 
+    def get_first_picture(self):
+        albums = self.get_albums()
+        if albums:
+            return Picture.objects.filter(album=albums.first()).first()
+        else:
+            return None
+
     def get_pictures(self):
         albums = self.get_albums()
         if albums:
             return Picture.objects.filter(album=albums.first())
         else:
             return None
+    
+    def get_reviews(self):
+        return Review.objects.filter(product=self)
 
 class Album(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='produto')
@@ -41,7 +51,7 @@ class Album(models.Model):
             return pictures.order_by('index')
 
 class Picture(models.Model):
-    img = models.ImageField(verbose_name='imagem')
+    img = models.ImageField(verbose_name='imagem', upload_to='products')
     index = models.IntegerField(verbose_name='índice')
     album = models.ForeignKey(Album, on_delete=models.CASCADE)
 
@@ -57,3 +67,6 @@ class Review(models.Model):
     )
     score = models.IntegerField(verbose_name='nota', choices=SCORE_CHOICES)
     comment = models.TextField(verbose_name='comentário')
+
+    def __str__(self):
+        return f'{self.product} ({self.score})'
