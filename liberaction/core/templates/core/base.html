@@ -9,6 +9,13 @@
     </title>
 </head>
 <body>
+    {% if messages %}
+        <div>
+            {% for m in messages %}
+                {{ m.message }}
+            {% endfor %}
+        </div>
+    {% endif %}
     {% block content %}{% endblock %}    
 </body>
 </html>

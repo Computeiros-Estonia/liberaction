@@ -56,7 +56,7 @@ class Picture(models.Model):
     album = models.ForeignKey(Album, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.index} {self.img.name}'
+        return f'{self.album.product} #{self.index}'
 
 class Review(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='produto')

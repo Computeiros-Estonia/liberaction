@@ -4,7 +4,8 @@
 <a href="{% url 'core:index' %}"></a>
 
 <div>
-    <form action="{% url 'core:new_product' %}" method="POST">
+    <form action="{% url 'core:create_product' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Submit</button>
     </form>
