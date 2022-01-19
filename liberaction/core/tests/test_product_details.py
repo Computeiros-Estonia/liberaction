@@ -38,7 +38,7 @@ def test_product_page_status_code(product_response):
     assert product_response.status_code == 200
 
 def test_product_present(product_response, product):
-    assertContains(product_response, product)
+    assertContains(product_response, product.base.name)
 
 def test_product_img_present(product_response, product):
     for pic in product.base.get_pictures():
