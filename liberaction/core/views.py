@@ -6,7 +6,6 @@ from .models import Album, Picture, BaseProduct, Product
 from .forms import BaseProductForm, ProductForm
 
 def index(request):
-    user = request.user
     products = Product.objects.all()
 
     context = {
