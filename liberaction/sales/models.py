@@ -4,7 +4,6 @@ from liberaction.core.models import BaseProduct
 
 class Cart(models.Model):
     buyer = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='comprador')
-    subtotal = models.FloatField()
     freight = models.FloatField('frete')
 
     class Meta:
@@ -14,8 +13,18 @@ class Cart(models.Model):
     def __str__(self):
         return f'#{self.id} {self.buyer}'
 
+    def get_items(self):
+        return CartItem.objects.filter(cart=self)
+
+    def get_subtotal(self):
+        subtotal = 0
+        for i in self.get_items():
+            subtotal += i.product.price
+
+        return subtotal
+
     def get_total(self):
-        return self.subtotal + self.freight
+        return self.get_subtotal() + self.freight
 
 class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, verbose_name='carrinho de compras')
