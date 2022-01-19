@@ -1,0 +1,17 @@
+{% extends 'core/base.html' %}
+{% block content %}
+
+<h1>Página principal</h1>
+
+{% if products %}
+    <ul>
+        {% for product in products %}
+            <img src="{{ product.get_first_picture.img.url }}" alt="">
+            <li>{{ product }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Não temos produtos disponíveis...</p>
+{% endif %}
+
+{% endblock content %}
