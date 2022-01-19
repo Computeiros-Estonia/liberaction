@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'liberaction.core',
     'liberaction.users',
+    'liberaction.sales',
 ]
 
 MIDDLEWARE = [
