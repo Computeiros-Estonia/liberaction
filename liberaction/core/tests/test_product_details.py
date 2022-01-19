@@ -1,48 +1,3 @@
-<<<<<<< HEAD:liberaction/core/tests/test_product_page.py
-import os
-import pytest
-from pytest_django.asserts import assertContains
-from django.urls import reverse
-from django.contrib.auth.models import User
-from liberaction.settings import BASE_DIR
-from liberaction.core.models import Album, Picture, Product
-
-@pytest.fixture
-def user(db):
-    return User.objects.create(username='agah', password='testingUser123')
-
-@pytest.fixture
-def product(user):
-    return Product.objects.create(
-        name='Bandeira', owner=user,
-        description='Bandeira libertária'
-    )
-
-@pytest.fixture
-def pictures(product):
-    album = Album.objects.create(product=product)
-    return [
-        Picture.objects.create(img='test/pic1.jpg', index=0, album=album),
-        Picture.objects.create(img='test/pic2.jpg', index=1, album=album),
-    ]
-
-@pytest.fixture
-def product_response(client, product, pictures):
-    return client.get(
-        reverse('core:product',
-        kwargs={'pk': product.id})
-    )
-
-def test_product_page_status_code(product_response):
-    assert product_response.status_code == 200
-
-def test_product_present(product_response, product):
-    assertContains(product_response, product.name)
-
-def test_product_img_present(product_response, product):
-    for pic in product.get_pictures():
-        assertContains(product_response, pic.img.url)
-=======
 import os
 import pytest
 from pytest_django.asserts import assertContains
@@ -88,4 +43,3 @@ def test_product_present(product_response, product):
 def test_product_img_present(product_response, product):
     for pic in product.base.get_pictures():
         assertContains(product_response, pic.img.url)
->>>>>>> origin/main:liberaction/core/tests/test_product_details.py
