@@ -1,21 +1,118 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        LiberAction {% if title %}| {{ title }}{% endif %}
-    </title>
-</head>
-<body>
-    {% if messages %}
-        <div>
-            {% for m in messages %}
-                {{ m.message }}
-            {% endfor %}
+{% load static %}
+<html lang="ptbr">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <title>
+            LiberAction {% if title %}| {{ title }}{% endif %}
+        </title>
+    
+        <link rel="stylesheet"  href="{% static 'css/styles.css' %}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+    </head>
+
+    <body>
+        {% comment %} {% if messages %}
+            <div>
+                {% for m in messages %}
+                    {{ m.message }}
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% block content %}{% endblock %}     {% endcomment %}
+
+        <!-- Site Header -->
+        <div class="header">
+            <div class="navbar">
+                <div class="mobile-menu">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </div>    
+                <div class="container1">
+                    <img src="{% static 'images/logo.png' %}">
+                    <input type="text" placeholder="Buscar produto, serviço e muito mais!">
+                    
+                    <div>
+                        <h3>Bem vindo!
+                            <span><a href="{% url 'login' %}">Entre</a> ou <a href="{% url 'register' %}">Cadastre-se</a></span>
+                        </h3>
+                    </div>
+                    <div class="icons">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2/2267.png" alt="">
+                        <img src="https://cdn-icons-png.flaticon.com/512/126/126510.png" alt="">
+                        
+                    </div>
+                    <div class="mobile-search">
+                        <div class="search-icon"></div>
+                        <div class="search-input">
+                            <input id="search-text" type="text" placeholder="Search">
+                        </div>
+                        <span class="clear"></span>
+                    </div>
+                    
+                </div>    
+            </div>
+            <ul class="menu-container">
+                <li><a href="#">Categorias</a></li> 
+                <li><a href="#">Ofertas do dia</a></li>
+                <li><a href="#">Aulas particulares</a></li>
+                <li><a href="#">Moda Ancap</a></li>
+                <li><a href="#">Anuncie Conosco</a></li>
+            </ul>
+            
         </div>
-    {% endif %}
-    {% block content %}{% endblock %}    
-</body>
+
+        {% block content %}{% endblock content %}
+
+        <!-- Footer starts --> 
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col-3">
+                        <h3>INSTITUCIONAL</h3>
+                        <ul>
+                            <li>Politica de Privacidade</li>
+                            <li>Nossos valores</li>
+                        </ul>
+                    </div>
+                    <div class="footer-col-3">
+                        <h3>ATENDIMENTO</h3>
+                        <ul>
+                            <li>Dúvidas Frequentes</li>
+                            <li>Troca e Devoluções</li>
+                            <li>Whatsapp<br> (00)00000-0000 </li>
+                        </ul>
+                    </div>
+                    <div class="footer-col-3">
+                        <h3>SUA CONTA</h3>
+                        <ul>
+                            <li>Acesso ao Painel</li>
+                            <li>Meus Pedidos</li>
+                            <li>Meus Dados</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-col-4">
+                        <h3>FORMAS DE PAGAMENTO</h3>
+                        
+                    </div>
+                    
+                    <div class="footer-col-4">
+                        <h3>REDES SOCIAIS</h3>
+                        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111392.png">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384031.png">
+                        
+                    </div>
+                </div>
+                <p class="copyright">2021 - Powered by Estonia Tech</p>
+            </div>
+        </div>
+        <script src="{% static 'js/script.js' %}"></script>    
+    </body>
 </html>
