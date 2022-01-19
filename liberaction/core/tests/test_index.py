@@ -1,7 +1,7 @@
 import pytest
 from pytest_django.asserts import assertContains, assertNotContains
 from django.urls import reverse
-from liberaction.core.models import Product, Review
+from liberaction.core.models import BaseProduct, Product, Review
 from django.contrib.auth.models import User
 
 @pytest.fixture
@@ -10,11 +10,16 @@ def user(db):
 
 @pytest.fixture
 def produtos(user):
-    return [
-        Product.objects.create(name='Web Development',owner=user,description='Awesome websites'),
-        Product.objects.create(name='Copywriting',owner=user,description='Awesome copywriting'),
-        Product.objects.create(name='Edição de vídeos',owner=user,description='Awesome videos'),
+    base_products = [
+        BaseProduct.objects.create(name='Camiseta',owner=user, description='Awesome t-shirts', price=100),
+        BaseProduct.objects.create(name='Computador Gamer',owner=user, description='Awesome speed', price=100),
+        BaseProduct.objects.create(name='Suplementos',owner=user, description='Awesome stuff', price=100),
     ]
+    products = []
+    for p in base_products:
+        product = Product.objects.create(base=p)
+        products.append(product)
+    return products
 
 @pytest.fixture
 def resposta_index(client, user, produtos):
