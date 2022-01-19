@@ -1,0 +1,15 @@
+{% extends 'core/base.html' %}
+{% block content %}
+
+<a href="{% url 'core:index' %}"></a>
+
+<div>
+    <form action="{% url 'core:create_service' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ base_form.as_p }}
+        {{ service_form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+{% endblock content %}

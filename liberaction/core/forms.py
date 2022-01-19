@@ -1,5 +1,5 @@
 from django import forms
-from .models import BaseProduct, Product, Tag
+from .models import BaseProduct, Product, Service, Tag
 from django.contrib.auth.models import User
 
 class BaseProductForm(forms.ModelForm):
@@ -19,4 +19,12 @@ class ProductForm(forms.ModelForm):
         required=False, disabled=True)
     class Meta:
         model = Product
+        fields = '__all__'
+
+class ServiceForm(forms.ModelForm):
+    base = forms.ModelChoiceField(
+        queryset=BaseProduct.objects.all(),
+        required=False, disabled=True)
+    class Meta:
+        model = Service
         fields = '__all__'
