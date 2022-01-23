@@ -1,6 +1,6 @@
 from django import forms
 from .models import BaseProduct, Product, Service, Tag
-from django.contrib.auth.models import User
+from liberaction.users.models import User
 
 class BaseProductForm(forms.ModelForm):
     images = forms.FileField(
