@@ -94,3 +94,7 @@ def product_details(request, pk):
         'product': Product.objects.get(id=pk),
     }
     return render(request, 'core/product.html', context)
+
+@login_required(login_url='/users/login/')
+def service_vs_product_redirection(request):
+    return render(request, 'core/sp_redirection.html')
