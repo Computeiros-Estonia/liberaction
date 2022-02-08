@@ -51,7 +51,11 @@ class User(AbstractBaseUser, PermissionsMixin):
         send_mail(subject, message, from_email, [self.email])
 
     def get_phone_number(self):
-        return PhoneNumber.objects.filter(user=self, is_main=True)
+        phone_number = PhoneNumber.objects.filter(user=self, is_main=True)
+        if phone_number:
+            return phone_number.first()
+        else:
+            return None
 
     def get_all_phone_numbers(self):
         return PhoneNumber.objects.filter(user=self)
