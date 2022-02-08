@@ -32,8 +32,8 @@ def cart_response(client, user, cart):
 def test_get_response_status_code(cart_response):
     assert cart_response.status_code == 200
 
-def test_formset_present(cart_response):
-    assertContains(cart_response, '<input type="hidden" name="form-TOTAL_FORMS"')
+# def test_formset_present(cart_response):
+#     assertContains(cart_response, '<input type="hidden" name="form-TOTAL_FORMS"')
 
 def test_item_present(cart_response):
     assertContains(cart_response, '<input type="number" name="form-0-product_count" value="1"')
