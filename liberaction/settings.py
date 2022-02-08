@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'liberaction.core',
     'liberaction.users',
+    'liberaction.sales',
 ]
 
 MIDDLEWARE = [
@@ -141,3 +142,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+# Custom Users
+AUTH_USER_MODEL = 'users.User'

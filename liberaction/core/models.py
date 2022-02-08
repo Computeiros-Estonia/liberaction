@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from liberaction.users.models import User
 
 class Tag(models.Model):
     name = models.CharField(max_length=50, verbose_name='nome')
@@ -78,7 +78,7 @@ class Picture(models.Model):
 
 class Review(models.Model):
     base_product = models.ForeignKey(BaseProduct, on_delete=models.CASCADE, verbose_name='produto')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='usuário')
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, verbose_name='usuário')
     SCORE_CHOICES = (
         (1, 1), (2, 2),
         (3, 3), (4, 4), (5, 5),

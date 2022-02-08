@@ -2,14 +2,13 @@ import os
 import pytest
 from pytest_django.asserts import assertContains
 from django.urls import reverse
-from django.contrib.auth.models import User
-from liberaction.settings import BASE_DIR
+from liberaction.users.models import User
 from liberaction.core.models import Album, Picture, BaseProduct, Product
 
 # Fixtures
 @pytest.fixture
 def user(db):
-    return User.objects.create(username='agah', password='testingUser123')
+    return User.objects.create(email='root@liberaction.com.br', password='toor')
 
 @pytest.fixture
 def product(user):

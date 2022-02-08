@@ -1,5 +1,5 @@
 import pytest
-from django.contrib.auth.models import User
+from liberaction.users.models import User
 from pytest_django.asserts import assertContains, assertRedirects
 from django.urls import reverse
 
@@ -20,14 +20,17 @@ def test_btn_submit_present(resposta_login_get):
 # POST login
 @pytest.fixture
 def user(db):
-    return User.objects.create_user(username='root', password='testingUser123')
+    return User.objects.create_user(email='root@liberaction.com.br', password='testingUser123')
 
 @pytest.fixture
 def resposta_login_post(client, user):
     return client.post(reverse('login'), data={
-        'username': 'root',
+        'username': 'root@liberaction.com.br',
         'password': 'testingUser123',
     })
+
+# def test_sem_erros(resposta_login_post):
+#     assert not resposta_login_post.context['form'].errors
 
 def test_user_autenticated(resposta_login_post):
     assert resposta_login_post.wsgi_request.user.is_authenticated == True
