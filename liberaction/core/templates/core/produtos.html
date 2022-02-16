@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LiberAction</title>
+    <link rel="stylesheet"  href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="header-alt">
+        <img src="logo.png" alt="">
+    </div>
+
+    <div class="container-form">
+        <div class="container-form">
+            <div class="cadastro-box">
+                <h2>Fale um pouco sobre o produto que quer anunciar =D </h2>
+                <div class="description-input">
+                        <ul>
+                            <li><a href="#">Eletrodomésticos</a></li>
+                            <li><a href="#">Eletrônicos</a></li>
+                            <li><a href="#">Beleza/Moda</a></li>
+                            <li><a href="#">Lazer</a></li>    
+                            <li><a href="#">Saúde</a></li>
+                            <li><a href="#">Livros</a></li>
+                            <li><a href="#">Outro:</a></li>                                  
+                        </ul>
+                </div>
+
+                <div class="single-input">
+                    <input type="text" class="input" id="nome" required>
+                    <label for="nome">Nome completo</label>
+                </div>
+
+                <div class="single-input">
+                    <div class="check"></div>Novo
+                    <div class="check"></div>Usado
+                </div>
+
+                <div class="single-input">
+                    <input type="number" class="number-input" id="price" required>
+                    <input type="number" class="number-input" id="quantity" required>
+                </div>
+                <div>
+                    <textarea name="" id="" cols="45" rows="10"></textarea>
+                </div>
+
+                <button>Anunciar Agora!</button>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+
+    let checkGender = document.querySelectorAll('.check');
+    
+
+    checkGender[0].addEventListener('click', () => {
+        checkGender[0].classList.toggle('active')  
+    })
+    checkGender[1].addEventListener('click', () => {
+        checkGender[1].classList.toggle('active')   
+    })
+    checkGender[2].addEventListener('click', () => {
+        checkGender[2].classList.toggle('active')   
+    })
+
+</script>

@@ -2,14 +2,13 @@ import os
 import pytest
 from pytest_django.asserts import assertContains
 from django.urls import reverse
-from django.contrib.auth.models import User
-from liberaction.settings import BASE_DIR
+from liberaction.users.models import User
 from liberaction.core.models import Album, Picture, BaseProduct, Product
 
 # Fixtures
 @pytest.fixture
 def user(db):
-    return User.objects.create(username='agah', password='testingUser123')
+    return User.objects.create(email='root@liberaction.com.br', password='toor')
 
 @pytest.fixture
 def product(user):
@@ -38,7 +37,7 @@ def test_product_page_status_code(product_response):
     assert product_response.status_code == 200
 
 def test_product_present(product_response, product):
-    assertContains(product_response, product)
+    assertContains(product_response, product.base.name)
 
 def test_product_img_present(product_response, product):
     for pic in product.base.get_pictures():

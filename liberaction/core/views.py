@@ -1,8 +1,7 @@
-from django.core.files.uploadedfile import SimpleUploadedFile
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.shortcuts import redirect, render
-from .models import Album, Picture, BaseProduct, Product
+from .models import Album, BaseProduct, Picture, Product
 from .forms import BaseProductForm, ProductForm, ServiceForm
 
 def index(request):
@@ -91,6 +90,10 @@ def create_service(request):
 
 def product_details(request, pk):
     context = {
-        'product': Product.objects.get(id=pk),
+        'product': BaseProduct.objects.get(id=pk),
     }
     return render(request, 'core/product.html', context)
+
+@login_required(login_url='/users/login/')
+def service_vs_product_redirection(request):
+    return render(request, 'core/sp_redirection.html')

@@ -1,17 +1,113 @@
 {% extends 'core/base.html' %}
+{% load static %}
+
 {% block content %}
-
-<h1>Página principal</h1>
-
-{% if products %}
-    <ul>
+    <div class="content">
+        
+       <!-- Banner starts -->
+        <div class="banner">
+            <img class="selected" src="https://images.unsplash.com/photo-1605792657660-596af9009e82?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1402&q=80" alt="">
+            <img src="https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80" alt="">
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80" alt="">
+            <div class="control">
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+            </div>
+        </div>
+        
+        <!-- Featured Products starts  -->
         {% for product in products %}
-            <img src="{{ product.get_first_picture.img.url }}" alt="">
-            <li>{{ product }}</li>
+            <h1>{{ product }}</h1>
+            <h3>{{ product.description }}</h3>
+        
+            {% for tag in product.tags.all %}
+                <h3>{{ tag }}</h3>
+            {% endfor %}
         {% endfor %}
-    </ul>
-{% else %}
-    <p>Não temos produtos disponíveis...</p>
-{% endif %}
+        <!------------------------------->
+    
+    
+    
+    
+        <!--------------------------------------   Follow Us on Social Media starts  ---------------------------------------------------------->
+        <div class="follow-us">
+            <div class="container-follow">
+                <h3> <span>LiberAction</span> nas redes sociais</h3>
+                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111392.png">
+                <img src="https://cdn-icons-png.flaticon.com/512/1384/1384031.png">
+            </div>
+        </div>
+        <!--------------------------------------------------------------------------------------------------------------------------------------->
+        
+        
+        
+        
+        <!---------------------------------------------   Reading Suggestions starts ---------------------------------------------------------->
+        <div class="categories">
+            <div class="small-container">
+                <div class="row">
+                    <div class="col-3">
+                        <!-- <img src="images/category-1.jpg" alt=""> -->
+                        <h4>Porque um país deve <br> apoiar o empreendedorismo?</h4>
+                    </div>
+                    <div class="col-3">
+                        <!-- <img src="images/category-2.jpg" alt=""> -->
+                        <h4>Como o Estado dificulta o <br> acesso a saúde?</h4>
+                    </div>
+                    <div class="col-3">
+                        <!-- <img src="images/category-3.jpg" alt=""> -->
+                        <h4>5 sugestões de leitura para <br> empreendedores</h4>
+                    </div>
+                </div> 
+            </div>       
+        </div>
+        <!--------------------------------------------------------------------------------------------------------------------------------------->
+        
+        
+        
+        <!--------------------------------------------------------- Newsletter starts ------------------------------------------------------------> 
+        <div class="newsletter">
+            <div class="container-newsletter">
+                <p>Quer receber nossas</p> 
+                <p><span>NOVIDADES?</span></p>
+                <h6>CADASTRE SEU E-MAIL E RECEBA EM PRIMEIRA MÃO TUDO SOBRE A VISTA DIREITA</h6>  
+            </div>
+            
+            <div class="container-cadastro">
+                <input type="text" placeholder="Digite seu nome">
+                <input type="text" placeholder="Digite seu e-mail">
+                <button>Cadastrar</button>
+            </div>
+        </div>
+        
+        <!--------------------------------------------------------------------------------------------------------------------------------------->
+        
+        
+        
+        
+        
+        <!----------------------------------------------------- Most Requested starts -----------------------------------------------------------> 
+        
+        <div class="categories">
+            <div class="small-container">
+                <h2 class="title">Mais Procurados</h2>
+                <div class="row">
+                    <div class="col-3">
+                        <!-- <img src="images/category-1.jpg" alt=""> -->
+                        <h4>Produto 1</h4>
+                    </div>
+                    <div class="col-3">
+                        <!-- <img src="images/category-2.jpg" alt=""> -->
+                        <h4>Produto 2</h4>
+                    </div>
+                    <div class="col-3">
+                        <!-- <img src="images/category-3.jpg" alt=""> -->
+                        <h4>Produto 3</h4>
+                    </div>
+                </div> 
+            </div>       
+        </div>
+    </div>
 
 {% endblock content %}

@@ -5,8 +5,10 @@ from  liberaction import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('users/', include('liberaction.users.urls')),
     path('', include('liberaction.core.urls')),
+    path('users/', include('liberaction.users.urls')),
+    path('sales/', include('liberaction.sales.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

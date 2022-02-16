@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 import pytest
 from pytest_django.asserts import assertContains, assertRedirects
-from django.contrib.auth.models import User
+from liberaction.users.models import User
 from django.urls import reverse
 
 from liberaction.core.models import Album, BaseProduct, Product, Tag
@@ -10,7 +10,7 @@ from liberaction.core.models import Album, BaseProduct, Product, Tag
 # Fixtures
 @pytest.fixture
 def user(db):
-    return User.objects.create(username='root', password='toor')
+    return User.objects.create(email='root@liberaction.com.br', password='toor')
 
 # GET
 @pytest.fixture
