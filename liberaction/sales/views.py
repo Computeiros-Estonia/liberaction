@@ -5,7 +5,7 @@ from django.forms import modelformset_factory
 from .forms import CartItemForm
 from .models import Cart, CartItem
 
-@login_required(login_url='/users/login/')
+# @login_required(login_url='/users/login/')
 def cart(request, pk):
     try:
         cart = Cart.objects.get(pk=pk)
