@@ -56,6 +56,9 @@ class Product(models.Model):
 
     def __str__(self):
         return self.base.name
+    
+    def get_price(self):
+        return BaseProduct.objects.get(pk=self.pk).price
 
 class Album(models.Model):
     base_product = models.ForeignKey(BaseProduct, on_delete=models.CASCADE, verbose_name='produto')

@@ -1,5 +1,7 @@
+from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.http import Http404
 from django.shortcuts import redirect, render
 from .models import Album, BaseProduct, Picture, Product
 from .forms import BaseProductForm, ProductForm, ServiceForm
@@ -49,6 +51,33 @@ def create_product(request):
         'product_form': product_form,
     }
     return render(request, 'core/create_product.html', context)
+
+@login_required(login_url='/users/login/')
+def edit_product(request, pk):
+    try:
+        product = Product.objects.get(pk=pk)
+        if request.method == 'POST':
+            base_form = BaseProductForm(request.POST, prefix='base', instance=product.base)
+            prod_form = ProductForm(request.POST, prefix='prod', instance=product)
+            if base_form.is_valid() and prod_form.is_valid():
+                base_form.save()
+                prod_form.save()
+                messages.success(request, 'Produto alterado com sucesso.')
+                return redirect(reverse('core:product', kwargs={'pk':product.pk}))
+        else:
+            base_form = BaseProductForm(instance=product.base, prefix='base')
+            prod_form = ProductForm(instance=product, prefix='prod')
+    
+        context = {
+            'title': 'Editar Produto',
+            'product': product,
+            'base_form': base_form,
+            'prod_form': prod_form,
+        }
+        return render(request, 'core/edit_product.html', context)
+    except Product.DoesNotExist:
+        raise Http404('Product not found.')
+
 
 @login_required(login_url='/users/login/')
 def create_service(request):

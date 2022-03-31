@@ -7,7 +7,7 @@ from django.urls import reverse
 
 from liberaction.core.models import Album, BaseProduct, Product, Tag
 
-# Fixtures
+# Create
 @pytest.fixture
 def user(db):
     return User.objects.create(email='root@liberaction.com.br', password='toor')
@@ -31,7 +31,6 @@ def test_submit_btn_present(create_product_request):
     assertContains(create_product_request, f'<button type="submit"')
 
 # POST
-# Fixtures
 @pytest.fixture
 def tags(client, db):
     return [
@@ -60,7 +59,7 @@ def create_product_post(client, user, tags):
         'product-is_new': True,
     })
 
-# For debugging purposes, do not uncomment
+# For debugging purposes only, do not uncomment
 # def test_base_form_is_valid(create_product_post):
 #     assert not create_product_post.context['base_form'].errors
 
@@ -78,3 +77,50 @@ def test_product_exists(create_product_post):
 
 def test_album_exists(create_product_post):
     assert Album.objects.exists()
+
+# Update
+@pytest.fixture
+def product(user, tags):
+    base = BaseProduct.objects.create(
+        name='Web dev',
+        owner=user,
+        description='Coll stuff',
+        price=10000
+    )
+    return Product.objects.create(base=base)
+
+@pytest.fixture
+def get_edit_product(client, product, user, tags):
+    client.force_login(user)
+    return client.get(reverse('core:edit_product', kwargs={'pk':product.pk}))
+
+def test_edit_product_status_code(get_edit_product):
+    assert get_edit_product.status_code == 200
+
+def test_edit_form_present(get_edit_product, product):
+    form = get_edit_product.context['form']
+    for field in form:
+        assertContains(get_edit_product, f'name="base-{field.name}"')
+    assertContains(get_edit_product, f'<form action="{reverse("core:edit_product", kwargs={"pk":product.pk})}"')
+
+def test_edit_submit_btn_present(get_edit_product):
+    assertContains(get_edit_product, f'<button type="submit"')
+
+@pytest.fixture
+def post_edit_product(client, product, user, tags):
+    client.force_login(user)
+    return client.post(reverse('core:edit_product', kwargs={'pk':product.pk}), data={
+        'base-name': 'Web Development',
+        'base-tags': [t.id for t in tags],
+        'base-owner': user.id,
+        'base-description': 'Awesome stuff.',
+        'base-price': 1,
+        'base-images': '',
+        'product-is_new': True,
+    })
+
+def test_edit_product_redirection(post_edit_product, product):
+    assertRedirects(post_edit_product, reverse('core:product', kwargs={'pk':product.pk}))
+
+def test_product_edited(post_edit_product):
+    assert Product.objects.first().get_price() == 1
