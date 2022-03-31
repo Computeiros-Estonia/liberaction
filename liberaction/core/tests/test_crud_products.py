@@ -5,7 +5,7 @@ from pytest_django.asserts import assertContains, assertRedirects
 from liberaction.users.models import User
 from django.urls import reverse
 
-from liberaction.core.models import Album, BaseProduct, Product, Tag
+from liberaction.core.models import Album, BaseProduct, Picture, Product, Tag
 
 # Create
 @pytest.fixture
@@ -78,7 +78,8 @@ def test_product_exists(create_product_post):
 def test_album_exists(create_product_post):
     assert Album.objects.exists()
 
-# Update
+
+# Read
 @pytest.fixture
 def product(user):
     base = BaseProduct.objects.create(
@@ -89,6 +90,36 @@ def product(user):
     )
     return Product.objects.create(base=base)
 
+@pytest.fixture
+def pictures(product):
+    album = Album.objects.create(base_product=product.base)
+    return [
+        Picture.objects.create(img='test/pic1.jpg', index=0, album=album),
+        Picture.objects.create(img='test/pic2.jpg', index=1, album=album),
+    ]
+
+# GET
+@pytest.fixture
+def get_product_response(client, product, pictures):
+    return client.get(
+        reverse('core:product',
+        kwargs={'pk': product.id})
+    )
+
+def test_product_page_status_code(get_product_response):
+    assert get_product_response.status_code == 200
+
+def test_product_present(get_product_response, product):
+    assertContains(get_product_response, product.base.name)
+    assertContains(get_product_response, product.base.owner)
+    assertContains(get_product_response, product.base.description)
+
+def test_product_img_present(get_product_response, product):
+    for pic in product.base.get_pictures():
+        assertContains(get_product_response, pic.img.url)
+
+
+# Update
 @pytest.fixture
 def get_edit_product(client, product, user, tags):
     client.force_login(user)
