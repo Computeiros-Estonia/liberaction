@@ -80,7 +80,7 @@ def test_album_exists(create_product_post):
 
 # Update
 @pytest.fixture
-def product(user, tags):
+def product(user):
     base = BaseProduct.objects.create(
         name='Web dev',
         owner=user,

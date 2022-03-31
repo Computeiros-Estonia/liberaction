@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import Http404
 from django.shortcuts import redirect, render
-from .models import Album, BaseProduct, Picture, Product
+from .models import Album, BaseProduct, Picture, Product, Service
 from .forms import BaseProductForm, ProductForm, ServiceForm
 
 def index(request):
@@ -51,6 +51,15 @@ def create_product(request):
         'product_form': product_form,
     }
     return render(request, 'core/create_product.html', context)
+
+def product_details(request, pk):
+    try:
+        context = {
+            'product': Product.objects.get(id=pk),
+        }
+        return render(request, 'core/product.html', context)
+    except Product.DoesNotExist:
+        raise Http404('Produto não encontrado')
 
 @login_required(login_url='/users/login/')
 def edit_product(request, pk):
@@ -124,12 +133,51 @@ def create_service(request):
     }
     return render(request, 'core/create_service.html', context)
 
+def service_details(request, pk):
+    try:
+        context = {
+            'service': Service.objects.get(id=pk),
+        }
+        return render(request, 'core/service.html', context)
+    except Service.DoesNotExist:
+        raise Http404('Serviço não encontrado')
 
-def product_details(request, pk):
-    context = {
-        'product': BaseProduct.objects.get(id=pk),
-    }
-    return render(request, 'core/product.html', context)
+@login_required(login_url='/users/login/')
+def edit_service(request, pk):
+    try:
+        service = Service.objects.get(pk=pk)
+        if request.method == 'POST':
+            base_form = BaseProductForm(request.POST, prefix='base', instance=service.base)
+            service_form = ServiceForm(request.POST, prefix='prod', instance=service)
+            if base_form.is_valid() and service_form.is_valid():
+                base_form.save()
+                service_form.save()
+                messages.success(request, 'Serviço alterado com sucesso.')
+                return redirect(reverse('core:service', kwargs={'pk':service.pk}))
+        else:
+            base_form = BaseProductForm(instance=service.base, prefix='base')
+            service_form = ServiceForm(instance=service, prefix='prod')
+    
+        context = {
+            'title': 'Editar Serviço',
+            'service': service,
+            'base_form': base_form,
+            'service_form': service_form,
+        }
+        return render(request, 'core/edit_service.html', context)
+    except Product.DoesNotExist:
+        raise Http404('Product not found.')
+
+@login_required(login_url='/users/login/')
+def delete_service(request, pk):
+    try:
+        service = Service.objects.get(pk=pk)
+        service.delete()
+        messages.success(request, 'Serviço deletado com sucesso.')
+        return redirect('core:index')
+    except Service.DoesNotExist:
+        raise Http404('Serviço não encontrado')
+
 
 @login_required(login_url='/users/login/')
 def service_vs_product_redirection(request):

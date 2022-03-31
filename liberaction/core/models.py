@@ -47,6 +47,19 @@ class Service(models.Model):
     def __str__(self):
         return self.base.name
 
+    def get_name(self):
+        return BaseProduct.objects.get(pk=self.pk).name
+
+    def get_owner(self):
+        return BaseProduct.objects.get(pk=self.pk).owner
+
+    def get_description(self):
+        return BaseProduct.objects.get(pk=self.pk).description
+
+    def get_price(self):
+        return BaseProduct.objects.get(pk=self.pk).price
+
+
 class Product(models.Model):
     base = models.OneToOneField(BaseProduct, on_delete=models.CASCADE)
     is_new = models.BooleanField(default=True, verbose_name='novo')
