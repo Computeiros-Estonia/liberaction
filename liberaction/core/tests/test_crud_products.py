@@ -124,3 +124,16 @@ def test_edit_product_redirection(post_edit_product, product):
 
 def test_product_edited(post_edit_product):
     assert Product.objects.first().get_price() == 1
+
+
+# Delete
+@pytest.fixture
+def post_delete_product(client, product, user):
+    client.force_login(user)
+    return client.post(reverse('core:delete_product', kwargs={'pk':product.pk}))
+
+def test_delete_product_redirection(post_delete_product, product):
+    assertRedirects(post_delete_product, reverse('core:index'))
+
+def test_product_deleted(post_delete_product):
+    assert not Product.objects.exists()

@@ -78,6 +78,14 @@ def edit_product(request, pk):
     except Product.DoesNotExist:
         raise Http404('Product not found.')
 
+@login_required(login_url='/users/login/')
+def delete_product(request, pk):
+    try:
+        product = Product.objects.get(pk=pk)
+        product.delete()
+        return redirect('core:index')
+    except Product.DoesNotExist:
+        raise Http404('Produto não encontrado')
 
 @login_required(login_url='/users/login/')
 def create_service(request):
