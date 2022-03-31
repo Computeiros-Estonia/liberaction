@@ -48,16 +48,19 @@ class Service(models.Model):
         return self.base.name
 
     def get_name(self):
-        return BaseProduct.objects.get(pk=self.pk).name
+        return self.base.name
 
     def get_owner(self):
-        return BaseProduct.objects.get(pk=self.pk).owner
+        return self.base.owner
 
     def get_description(self):
-        return BaseProduct.objects.get(pk=self.pk).description
+        return self.base.description
 
     def get_price(self):
-        return BaseProduct.objects.get(pk=self.pk).price
+        return self.base.price
+
+    def get_pictures(self):
+        return self.base.get_pictures()
 
 
 class Product(models.Model):
@@ -70,8 +73,20 @@ class Product(models.Model):
     def __str__(self):
         return self.base.name
     
+    def get_name(self):
+        return self.base.name
+
+    def get_owner(self):
+        return self.base.owner
+
+    def get_description(self):
+        return self.base.description
+
     def get_price(self):
-        return BaseProduct.objects.get(pk=self.pk).price
+        return self.base.price
+
+    def get_pictures(self):
+        return self.base.get_pictures()
 
 class Album(models.Model):
     base_product = models.ForeignKey(BaseProduct, on_delete=models.CASCADE, verbose_name='produto')
