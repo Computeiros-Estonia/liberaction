@@ -184,6 +184,15 @@ def service_vs_product_redirection(request):
     return render(request, 'core/sp_redirection.html')
 
 
+# Favorites
+@login_required(login_url='/users/login/')
+def favorites(request):
+    context = {
+        'title': 'Meus favoritos',
+        'user': request.user,
+    }
+    return render(request, 'core/favorites.html', context)
+
 @login_required(login_url='/users/login/')
 def add_to_favorites(request, pk):
     product = get_object_or_404(BaseProduct, pk=pk)
