@@ -191,3 +191,11 @@ def add_to_favorites(request, pk):
         request.user.favorites.add(product)
         messages.success(request, 'Produto adicionado aos seus favoritos.')
         return redirect(reverse('core:product', kwargs={'pk': pk}))
+
+@login_required(login_url='/users/login/')
+def remove_from_favorites(request, pk):
+    product = get_object_or_404(BaseProduct, pk=pk)
+    if request.method == 'POST':
+        request.user.favorites.remove(product)
+        messages.success(request, 'Produto removido dos seus favoritos.')
+        return redirect(reverse('core:product', kwargs={'pk': pk}))
