@@ -2,7 +2,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import Http404
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from .models import Album, BaseProduct, Picture, Product, Service
 from .forms import BaseProductForm, ProductForm, ServiceForm
 
@@ -182,3 +182,20 @@ def delete_service(request, pk):
 @login_required(login_url='/users/login/')
 def service_vs_product_redirection(request):
     return render(request, 'core/sp_redirection.html')
+
+
+@login_required(login_url='/users/login/')
+def add_to_favorites(request, pk):
+    product = get_object_or_404(BaseProduct, pk=pk)
+    if request.method == 'POST':
+        request.user.favorites.add(product)
+        messages.success(request, 'Produto adicionado aos seus favoritos.')
+        return redirect(reverse('core:product', kwargs={'pk': pk}))
+
+@login_required(login_url='/users/login/')
+def remove_from_favorites(request, pk):
+    product = get_object_or_404(BaseProduct, pk=pk)
+    if request.method == 'POST':
+        request.user.favorites.remove(product)
+        messages.success(request, 'Produto removido dos seus favoritos.')
+        return redirect(reverse('core:product', kwargs={'pk': pk}))
