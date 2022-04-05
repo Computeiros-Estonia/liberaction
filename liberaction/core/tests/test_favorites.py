@@ -1,5 +1,5 @@
 import pytest
-from pytest_django.asserts import assertRedirects
+from pytest_django.asserts import assertRedirects, assertContains
 from django.urls import reverse
 from liberaction.core.models import BaseProduct, Product
 from liberaction.users.models import User
@@ -17,6 +17,21 @@ def product(user):
         price=10000
     )
     return Product.objects.create(base=base)
+
+
+# Vizualizar
+@pytest.fixture
+def response_favorites(client, product, user):
+    user.favorites.add(product.base)
+    client.force_login(user)
+    return client.post(reverse('core:favorites'))
+
+def test_favorites_status_code(response_favorites):
+    assert response_favorites.status_code == 200
+
+def test_favorite_products_present(response_favorites):
+    product = BaseProduct.objects.first()
+    assertContains(response_favorites, product.name)
 
 
 # Adicionar
