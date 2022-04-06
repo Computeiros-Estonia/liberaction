@@ -1,9 +1,9 @@
 from django.http import Http404
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.contrib.auth import login
 from django.contrib import messages
-from liberaction.users.forms import UserCreationForm, UserEditForm
-from liberaction.users.models import User
+from liberaction.users.forms import UserCreationForm, UserEditForm, AddressForm
 
 def register(request):
     if request.method == 'POST':
@@ -39,3 +39,17 @@ def perfil(request):
         'form': form,
     }
     return render(request, 'users/perfil.html', context)
+
+# Addresses
+@login_required(login_url='/users/login/')
+def create_address(request):
+    if request.method == 'POST':
+        pass
+    else:
+        form = AddressForm()
+    
+    context = {
+        'title': 'Adicionar novo endereço',
+        'form': form,
+    }
+    return render(request, 'users/create_address.html', context)
