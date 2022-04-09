@@ -1,0 +1,17 @@
+{% extends 'core/base.html' %}
+{% block content %}
+
+<div>
+    <h1>{{ title }}</h1>
+    {% if addresses %}
+        <ul>
+            {% for address in addresses %}
+                <li>{{ address }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nenhum endereço disponível.</p>
+    {% endif %}
+</div>
+
+{% endblock content %}
