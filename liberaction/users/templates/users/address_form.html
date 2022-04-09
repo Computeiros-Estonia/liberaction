@@ -2,7 +2,7 @@
 {% block content %}
 
 <div>
-    <form action="{% url 'create_address' %}" method="POST">
+    <form action="{{ form_action }}" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Submit</button>

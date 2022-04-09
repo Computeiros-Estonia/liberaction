@@ -86,8 +86,8 @@ class Address(models.Model):
     address1 = models.CharField('lagradouro', max_length=100)
     address2 = models.CharField('complemento', max_length=100, blank=True, null=True)
     cep = models.CharField('CEP', max_length=15)
-    is_main = models.BooleanField(verbose_name='endereço principal')
+    is_main = models.BooleanField(verbose_name='endereço principal', default=True)
 
     def __str__(self):
-        complemento = self.address2 if self.address2 else ''
-        return f'{self.address1}, {self.city}' + f', {complemento}'
+        complemento = f', {self.address2}' if self.address2 else ''
+        return f'{self.address1}, {self.city}' + f'{complemento}'
