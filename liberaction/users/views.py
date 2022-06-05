@@ -16,7 +16,7 @@ def register(request):
             return redirect('core:index')
     else:
         form = UserCreationForm()
-    
+
     context = {
         'title': 'Registration',
         'form': form,
