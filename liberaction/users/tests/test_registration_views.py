@@ -22,12 +22,15 @@ def test_btn_submit_present(resposta_register_get):
 def resposta_register_post(client, db):
     return client.post(reverse('register'), data={
         'email': 'root@liberaction.com.br',
-        'first_name': 'Root',
-        'last_name': 'User',
-        'cpf': 00000000000,
+        'name' : 'Root User',
+        'cpf': 00000000000 ,
         'password1': 'testingUser123',
         'password2': 'testingUser123',
+        'dt_nasc': 00000000 ,
+        'telefone': 11999999999
     })
+
+
 
 # def test_sem_erros(resposta_register_post):
 #     assert not resposta_register_post.context['form'].errors

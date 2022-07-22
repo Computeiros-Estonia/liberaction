@@ -1,12 +1,78 @@
-{% extends 'core/base.html' %}
+{% extends 'core/base_register.html' %}
 {% block content %}
 
-<div>
-    <form action="{% url 'register' %}" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
-    </form>
-</div>
+<form action="{% url 'register' %}" method="POST">
+    {% csrf_token %}
+    <div class="header-alt">
+            <img src="../static/images/logo.png" alt="">
+    </div>
+
+        <div class="container-form">
+            <div class="container-form">
+                <div class="cadastro-box">
+                    <h2>Quero me cadastrar</h2>
+                    <div class="single-input">
+                        <input type="text" class="input" id="nome" name="name" required>
+                        <label for="nome">Nome completo</label>
+                    </div>
+                    <div class="single-input">
+                        <div class="check"></div>Feminino
+                        <div class="check"></div>Masculino
+                        <div class="check"></div>Outro/Prefiro não informar
+                    </div>
+                    <div class="single-input">
+                        <input type="date" class="input" id="dt_nasc" name="dt_nasc" required>
+                        <!-- <label for="dt_nasc">Data de nascimento</label> -->
+                    </div>
+                    <div class="single-input">
+                        <input type="text" class="input" id="cpf" name="cpf"  required>
+                        <label for="cpf">CPF ou CNPJ</label>
+                    </div>
+                    <div class="single-input">
+                        <input type="text" class="input" id="email" name="email" required>
+                        <label for="email">E-mail</label>
+                    </div>
+                    <div class="single-input">
+                        <input type="text" class="input" id="telefone" name="telefone" required>
+                        <label for="telefone">Telefone</label>
+                    </div>
+                    <div class="single-input">
+                        <input type="password" class="input" id="senha" name="password1" required>
+                        <label for="senha">Crie uma senha</label>
+                    </div>
+                    <div class="single-input">
+                        <input type="password" class="input" id="confirmacao_senha" name="password2" required>
+                        <label for="corfirmacao_senha">Confirme sua senha</label>
+                    </div>
+                    
+                    <button type="submit">Continuar</button>
+                    <h6>Não se preocupe, nossa plataforma é 100% segura.<br> Ao cadastrar, você concorda com a nossa
+                        <a href="">política de privacidade</a>
+                    </h6> 
+                    <p>Já tem cadastro? <a href="{% url 'login' %}">Entrar</a></p>
+                </div>
+            </div>        
+        </div>
+
+
+
+    <script>
+
+        // Criar validação para garantir que somente uma opção foi selecionada
+
+        let checkGender = document.querySelectorAll('.check');
+        
+        checkGender[0].addEventListener('click', () => {
+            checkGender[0].classList.toggle('active')  
+        })
+        checkGender[1].addEventListener('click', () => {
+            checkGender[1].classList.toggle('active')   
+        })
+        checkGender[2].addEventListener('click', () => {
+            checkGender[2].classList.toggle('active')   
+        })
+
+    </script>
+</form>
 
 {% endblock content %}
