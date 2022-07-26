@@ -53,13 +53,8 @@ def create_product(request):
     return render(request, 'core/create_product.html', context)
 
 def product_details(request, pk):
-    try:
-        context = {
-            'product': Product.objects.get(id=pk),
-        }
-        return render(request, 'core/product.html', context)
-    except Product.DoesNotExist:
-        raise Http404('Produto não encontrado')
+    product = get_object_or_404(Product, pk=pk)
+    return render(request, 'core/product_details.html', {'product': product})
 
 @login_required(login_url='/users/login/')
 def edit_product(request, pk):

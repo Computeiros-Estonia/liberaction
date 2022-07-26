@@ -1,0 +1,16 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<h1>Basket summary</h1>
+
+<div>
+    <ul>
+        {% for b, p in basket %}
+            <li>{{ p }} - <span>{{ b }}</span></li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock content %}

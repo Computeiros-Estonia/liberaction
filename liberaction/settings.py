@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'liberaction.core',
     'liberaction.users',
+    'liberaction.basket',
     'liberaction.sales',
 ]
 
@@ -66,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'liberaction.basket.context_processors.basket',
             ],
         },
     },
