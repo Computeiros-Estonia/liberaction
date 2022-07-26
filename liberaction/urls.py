@@ -7,6 +7,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('liberaction.core.urls')),
     path('users/', include('liberaction.users.urls')),
+    path('basket/', include('liberaction.basket.urls')),
     path('sales/', include('liberaction.sales.urls')),
 ]
 
