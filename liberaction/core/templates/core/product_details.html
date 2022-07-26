@@ -1,0 +1,51 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block content %}
+    <h1>{{ product.get_name }}</h1>
+    <h5>{{ product.get_owner.get_full_name }}</h5>
+
+    {% for picture in product.get_pictures %}
+        <img src="{{ picture.img.url }}" alt="Foto #{{ picture.index }}">
+    {% endfor %}
+
+    <p>{{ product.get_description }}</p>
+
+    <label for="id_product_qty">Quantity</label>
+    <select name="product_qty" id="id_product_qty">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+
+    <button type="button" id="add-btn" value="{{ product.id }}" class="btn btn-secondary btn-sm">
+        Add to basket
+    </button>
+
+    <script>
+        $(document).on('click', '#add-btn', function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: '{% url "basket:basket_add" %}',
+                data: {
+                    product_id: $('#add-btn').val(),
+                    product_qty: $('#id_product_qty option:selected').text(),
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    action: 'post'
+                },
+                success: function (response) {
+                    // console.log(response);
+                    document.getElementById('basket-qty').innerHTML = response.qty;
+                },
+                error: function (xhr, errmsg, err) {
+                    console.log(errmsg);
+                    console.log(err);
+                }
+            })
+        })
+    </script>
+
+{% endblock content %}

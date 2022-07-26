@@ -47,6 +47,22 @@ class Service(models.Model):
     def __str__(self):
         return self.base.name
 
+    def get_name(self):
+        return self.base.name
+
+    def get_owner(self):
+        return self.base.owner
+
+    def get_description(self):
+        return self.base.description
+
+    def get_price(self):
+        return self.base.price
+
+    def get_pictures(self):
+        return self.base.get_pictures()
+
+
 class Product(models.Model):
     base = models.OneToOneField(BaseProduct, on_delete=models.CASCADE)
     is_new = models.BooleanField(default=True, verbose_name='novo')
@@ -56,6 +72,21 @@ class Product(models.Model):
 
     def __str__(self):
         return self.base.name
+    
+    def get_name(self):
+        return self.base.name
+
+    def get_owner(self):
+        return self.base.owner
+
+    def get_description(self):
+        return self.base.description
+
+    def get_price(self):
+        return self.base.price
+
+    def get_pictures(self):
+        return self.base.get_pictures()
 
 class Album(models.Model):
     base_product = models.ForeignKey(BaseProduct, on_delete=models.CASCADE, verbose_name='produto')
