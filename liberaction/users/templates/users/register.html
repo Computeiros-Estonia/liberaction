@@ -4,44 +4,59 @@
 <form action="{% url 'register' %}" method="POST">
     {% csrf_token %}
     <div class="header-alt">
-            <img src="../static/images/logo.png" alt="">
+        <img src="../static/images/logo.png" alt="">
     </div>
 
+    {% if form.errors %}
+        <ul>
+            {% for err in form.non_field_errors %}
+                <li>{{ err.value }}</li>  
+            {% endfor %}
+        </ul>
+        <ul>
+            {% for err in form.mess_errors %}
+                <li>{{ err.value }}</li>  
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <div class="container-form">
         <div class="container-form">
-            <div class="container-form">
-                <div class="cadastro-box">
-                    <h2>Quero me cadastrar</h2>
+            <div class="cadastro-box">
+                <h2>Quero me cadastrar</h2>
                     <div class="single-input">
-                        <input type="text" class="input" id="nome" name="name" required>
-                        <label for="nome">Nome completo</label>
+                        <input type="text" class="input" id="id_first_name" name="first_name" required>
+                        <label for="id_first_name">Nome</label>
                     </div>
                     <div class="single-input">
-                        <div class="check"></div>Feminino
-                        <div class="check"></div>Masculino
-                        <div class="check"></div>Outro/Prefiro não informar
+                        <input type="text" class="input" id="id_last_name" name="last_name" required>
+                        <label for="id_last_name">Sobrenome</label>
                     </div>
+                    {% for choices in gender_choices %}
+                        <div class="single-input">
+                            <input type="radio" class="input" id="id_gender" name="gender" value="{{ choices|first }}">
+                            <label for="id_gender">{{ choices|last }}</label>
+                        </div>
+                    {% endfor %}
+
                     <div class="single-input">
-                        <input type="date" class="input" id="dt_nasc" name="dt_nasc" required>
+                        <input type="date" class="input" id="id_birth_date" name="birth_date" required>
                         <!-- <label for="dt_nasc">Data de nascimento</label> -->
                     </div>
                     <div class="single-input">
-                        <input type="text" class="input" id="cpf" name="cpf"  required>
+                        <input type="text" class="input" id="id_cpf" name="cpf"  required>
                         <label for="cpf">CPF ou CNPJ</label>
                     </div>
                     <div class="single-input">
-                        <input type="text" class="input" id="email" name="email" required>
+                        <input type="text" class="input" id="id_email" name="email" required>
                         <label for="email">E-mail</label>
                     </div>
                     <div class="single-input">
-                        <input type="text" class="input" id="telefone" name="telefone" required>
-                        <label for="telefone">Telefone</label>
-                    </div>
-                    <div class="single-input">
-                        <input type="password" class="input" id="senha" name="password1" required>
+                        <input type="password" class="input" id="id_password1" name="password1" required>
                         <label for="senha">Crie uma senha</label>
                     </div>
                     <div class="single-input">
-                        <input type="password" class="input" id="confirmacao_senha" name="password2" required>
+                        <input type="password" class="input" id="id_password2" name="password2" required>
                         <label for="corfirmacao_senha">Confirme sua senha</label>
                     </div>
                     
@@ -57,7 +72,6 @@
 
 
     <script>
-
         // Criar validação para garantir que somente uma opção foi selecionada
 
         let checkGender = document.querySelectorAll('.check');

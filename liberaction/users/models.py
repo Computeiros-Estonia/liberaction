@@ -36,6 +36,13 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField('ativo', default=True, help_text='Define se o usuário deve ser tratado como ativo. Desmarque este campo ao invés de deletar usuários.')
     is_trusty = models.BooleanField('confiável', default=False, help_text='Define se o usuário confirmou seu e-mail.')
     date_joined = models.DateTimeField('date joined', auto_now_add=True)
+    birth_date = models.DateTimeField('date de nascimento')
+    GENDER_CHOICES = (
+        ('m', 'Masculino'),
+        ('f', 'Feminino'),
+        ('o', 'Outro'),
+    )
+    gender = models.CharField("Unidade de Medida", max_length=1, choices=GENDER_CHOICES)
     # Django stuff
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name', 'cpf']
