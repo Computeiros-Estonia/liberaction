@@ -31,10 +31,18 @@ class User(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField('nome', max_length=30)
     last_name = models.CharField('sobrenome', max_length=30)
     cpf = models.CharField('CPF', max_length=11, unique=True, blank=True, null=True)
+    favorites = models.ManyToManyField('core.BaseProduct', verbose_name='favoritos')
     is_staff = models.BooleanField('staff status', default=False, help_text='Define se o usuário tem permissão de entrar no site administrativo.')
     is_active = models.BooleanField('ativo', default=True, help_text='Define se o usuário deve ser tratado como ativo. Desmarque este campo ao invés de deletar usuários.')
     is_trusty = models.BooleanField('confiável', default=False, help_text='Define se o usuário confirmou seu e-mail.')
     date_joined = models.DateTimeField('date joined', auto_now_add=True)
+    birth_date = models.DateTimeField('date de nascimento')
+    GENDER_CHOICES = (
+        ('m', 'Masculino'),
+        ('f', 'Feminino'),
+        ('o', 'Outro'),
+    )
+    gender = models.CharField("Unidade de Medida", max_length=1, choices=GENDER_CHOICES)
     # Django stuff
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name', 'cpf']
@@ -85,8 +93,8 @@ class Address(models.Model):
     address1 = models.CharField('lagradouro', max_length=100)
     address2 = models.CharField('complemento', max_length=100, blank=True, null=True)
     cep = models.CharField('CEP', max_length=15)
-    is_main = models.BooleanField(verbose_name='endereço principal')
+    is_main = models.BooleanField(verbose_name='endereço principal', default=True)
 
     def __str__(self):
-        complemento = self.address2 if self.address2 else ''
-        return f'{self.address1}, {self.city}' + f', {complemento}'
+        complemento = f', {self.address2}' if self.address2 else ''
+        return f'{self.address1}, {self.city}' + f'{complemento}'

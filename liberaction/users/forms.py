@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth import password_validation
 from django.core.exceptions import ValidationError
-from liberaction.users.models import User
+from liberaction.users.models import Address, User
 
 class UserCreationForm(forms.ModelForm):
     error_messages = {
@@ -22,8 +22,7 @@ class UserCreationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        exclude = ("is_staff", "is_superuser", "is_active", "is_trusty", "date_joined",
-            "last_login", "groups", "user_permissions", "password")
+        fields = ('email', 'first_name', 'last_name', 'gender', 'birth_date', 'cpf', 'password1', 'password1')
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
@@ -57,3 +56,14 @@ class UserEditForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'cpf', 'email']
+
+
+class AddressForm(forms.ModelForm):
+    user = forms.ModelChoiceField(
+        queryset=User.objects.all(),
+        widget=forms.HiddenInput(),
+        disabled=True
+    )
+    class Meta:
+        model = Address
+        fields = '__all__'
