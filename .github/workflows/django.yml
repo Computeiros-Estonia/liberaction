@@ -20,4 +20,4 @@ jobs:
         pipenv sync --dev
     - name: Rodar Testes Automaticos
       run: |
-        pipenv run pytest webdev
+        pipenv run pytest liberaction
