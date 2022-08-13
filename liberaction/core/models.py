@@ -66,6 +66,7 @@ class Service(models.Model):
 class Product(models.Model):
     base = models.OneToOneField(BaseProduct, on_delete=models.CASCADE)
     is_new = models.BooleanField(default=True, verbose_name='novo')
+    quantity = models.IntegerField(default=1, verbose_name= 'quantidade')
 
     class Meta:
         verbose_name = 'produto'
