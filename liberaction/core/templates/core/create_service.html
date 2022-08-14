@@ -8,8 +8,83 @@
         {% csrf_token %}
         {{ base_form.as_p }}
         {{ service_form.as_p }}
+        <body>
+            <div class="header-alt">
+                <img src="logo.png" alt="">
+            </div>
+        
+            <div class="container-form">
+                <div class="container-form">
+                    <div class="cadastro-box">
+                        <h2>Fale um pouco sobre o serviço que quer anunciar =D </h2>
+                        <div class="description-input">
+                            <ul>
+                                <li><a href="#">Saúde</a></li>
+                                <li><a href="#">Tecnologia/Programação</a></li>
+                                <li><a href="#">Marketing</a></li>
+                                <li><a href="#">Design</a></li>    
+                                <li><a href="#">Educação</a></li>
+                                <li><a href="#">Limpeza</a></li>
+                                <li><a href="#">Outros</a></li>                                  
+                            </ul>
+                        </div>
+                        <div class="single-input">
+                            <input type="text" class="input" id="nome" required>
+                            <label for="nome">Nome completo</label>
+                        </div>
+                        <div class="single-input">
+                            <input type="number" class="number-input" id="valor" required>
+                            <label for="valor">Preço</label>
+        
+                            <div class="single-input">
+                                <input type="radio" class="input" id="id_gender" name="gender" value="{{ choices|first }}">
+                                <label for="id_gender">{{ choices|last }}</label>Valor a negociar
+                            </div>
+        
+                        <div class="single-input">
+                            <input type="text" class="description-input" id="description" required>
+                            <label for="description">Descrição do serviço</label>
+                        </div>
+                        
+                        <button>Anunciar Agora!</button>
+        
+                    </div>
+                </div>
+            </div>
+        </body>
+        </html>
+        
+        <script>
+        
+            let checkGender = document.querySelectorAll('.check');
+            
+        
+            checkGender[0].addEventListener('click', () => {
+                checkGender[0].classList.toggle('active')  
+            })
+            checkGender[1].addEventListener('click', () => {
+                checkGender[1].classList.toggle('active')   
+            })
+            checkGender[2].addEventListener('click', () => {
+                checkGender[2].classList.toggle('active')   
+            })
+        
+        </script>
         <button type="submit">Submit</button>
     </form>
 </div>
+
+<!--<div>
+    <img src="../static/images/logo.png" alt="">
+    <form action="{% url 'core:create_service' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ base_form.as_p }}
+        {{ service_form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+</div>
+-->
+
+
 
 {% endblock content %}

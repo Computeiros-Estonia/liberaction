@@ -1,2 +1,42 @@
-<a href="{% url 'core:create_product' %}">Produto</a>
-<a href="{% url 'core:create_service' %}">Serviço</a>
+{% extends 'core/base_alt.html' %}
+{% block content %}
+
+<body> 
+    <div class="header-alt"></div>
+
+ <div class="choice-background">
+             <!-- 
+     <div class="col-3">
+            <h1>O que deseja anunciar?</h1>
+     </div>  -->
+
+     <div class="background-adjust">
+        <div class="choice-container">
+           <a href="{% url 'core:create_product' %}"><img src="images/bolsa.png" alt=""> </a> 
+        </div>
+         <h1> ou</h1>
+         <div class="choice-container">
+             <a href="{% url 'core:create_service' %}"><img src="images/Servicos.png" alt=""></a>
+         </div>
+     </div>
+ 
+ </div>
+
+</body>
+<script>
+
+    let checkGender = document.querySelectorAll('.check');
+    
+
+    checkGender[0].addEventListener('click', () => {
+        checkGender[0].classList.toggle('active')  
+    })
+    checkGender[1].addEventListener('click', () => {
+        checkGender[1].classList.toggle('active')   
+    })
+    checkGender[2].addEventListener('click', () => {
+        checkGender[2].classList.toggle('active')   
+    })
+
+</script>
+{% endblock content %}
