@@ -1,11 +1,39 @@
-{% extends 'core/base.html' %}
+{% extends 'core/base_alt2.html' %}
 {% block content %}
 
 <div>
     <form action="{{ form_action }}" method="POST">
+        <div class="perfil-container">
+            <div class="info-user-container">
+                <div class="info-user-card">
+                    <label for="">Olá, bem vindo a sua conta!</label>
+                </div>
+                <div class="info-user-card">
+                    <label for="">Pedidos</label>
+                    <p>Acompanhe o envio</p>
+                </div>
+                <div class="info-user-card">
+                    <label for="">Favoritos</label>
+                    <p>Veja os produtos que favoritou</p>
+                </div>
+                <div class="info-user-card">
+                    <label for="">Cadastro</label>
+                    <p>Veja e altere seus dados, email, senha, etc</p>
+                </div>
+                <div class="info-user-card selected">
+                    <label for="">Endereço</label>
+                    <p>Veja e altere seus endereços</p>
+                </div>
+                
+            </div>
+            <div class="info-user-register">
+                {{ form.as_p }}
+                <button type="submit">Continuar</button>
+            </div>
+        </div>
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
+        
+        
     </form>
 </div>
 

@@ -1,0 +1,96 @@
+{% extends 'core/base_alt2.html' %}
+{% block content %}
+    
+    <div class="perfil-container">
+        <div class="info-user-container">
+            <div class="info-user-card">
+                <label for="">Olá, bem vindo a sua conta!</label>
+            </div>
+            <div class="info-user-card">
+                <label for="">Pedidos</label>
+                <p>Acompanhe o envio</p>
+            </div>
+            <div class="info-user-card">
+                <label for="">Favoritos</label>
+                <p>Veja os produtos que favoritou</p>
+            </div>
+            <div class="info-user-card selected">
+                <label for="">Cadastro</label>
+                <p>Veja e altere seus dados, email, senha, etc</p>
+            </div>
+            <div class="info-user-card">
+                <label for="">Endereço</label>
+                <p>Veja e altere seus endereços</p>
+            </div>
+        </div>
+
+        <div class="info-user-register">
+            <label for="">Nome completo:</label>
+            <div>
+                <input type="text" placeholder="Cleysonvaldo da Silva">
+                <a href="">Alterar</a>
+            </div>
+
+            <label for="">Gênero</label>
+            <div class="single-input">
+                <div class="check"></div>Ferminino
+                <div class="check"></div>Masculino
+                <div class="check"></div>Outro/Prefiro não informar
+            </div>
+
+            <label for="">Data de nascimento:</label>
+            <div>
+                <input type="text" placeholder="12/12/1990">
+                <a href="">Alterar</a>
+            </div>
+
+            <label for="">CPF ou CNPJ:</label>
+            <div>
+                <input type="text" placeholder="1321445235">
+                <a href="">Alterar</a>
+            </div>
+
+            <label for="">E-mail:</label>
+            <div>
+                <input type="text" placeholder="cleysonvaldo@gmail.com">
+                <a href="">Alterar</a>
+            </div>
+
+            <label for="">Telefone:</label>
+            <div>
+                <input type="text" placeholder="12344354">
+                <a href="">Alterar</a>
+            </div>
+
+            <label for="">Crie uma senha:</label>
+            <div>
+                <input type="text" placeholder="*********">
+                <a href="">Alterar</a>
+            </div>
+
+            <label for="">Confirme a senha que criou:</label>
+            <div>
+                <input type="text" placeholder="*********">
+                <a href="">Alterar</a>
+            </div>
+            <button>Salvar alterações</button>
+        </div>    
+    </div>
+
+    <script>
+        let checkGender = document.querySelectorAll('.check');
+        
+
+        checkGender[0].addEventListener('click', () => {
+            checkGender[0].classList.toggle('active')  
+        })
+        checkGender[1].addEventListener('click', () => {
+            checkGender[1].classList.toggle('active')   
+        })
+        checkGender[2].addEventListener('click', () => {
+            checkGender[2].classList.toggle('active')   
+        })
+
+    </script>
+
+{% endblock content %}

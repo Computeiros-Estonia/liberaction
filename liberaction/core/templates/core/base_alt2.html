@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ptbr">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <title>
+            LiberAction {% if title %}| {{ title }}{% endif %}
+        </title>
+    
+        <link rel="stylesheet"  href="{% static 'css/styles.css' %}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+    </head>
+
+    <body>
+        {% comment %} {% if messages %}
+            <div>
+                {% for m in messages %}
+                    {{ m.message }}
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% block content %}{% endblock %}     {% endcomment %}
+
+        <!-- Site Header -->
+        <div class="header">
+            <div class="navbar">
+                <div class="mobile-menu">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </div>    
+                <div class="container1">
+                    <img src="{% static 'images/logo.png' %}">
+                    <input type="text" placeholder="Buscar produto, serviço e muito mais!">
+                    
+                    <div>
+                        <h3>Bem vindo!
+                            <span>
+                                {% if request.user.is_authenticated %}
+                                    <a href="{% url 'logout' %}">Logout</a> ou
+                                {% else %}
+                                    <a href="{% url 'login' %}">Entre</a> ou 
+                                {% endif %}
+                                <a href="{% url 'register' %}">Cadastre-se</a>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="icons">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2/2267.png" alt="">
+                        <img src="https://cdn-icons-png.flaticon.com/512/126/126510.png" alt="">
+                        
+                    </div>
+                    <div class="mobile-search">
+                        <div class="search-icon"></div>
+                        <div class="search-input">
+                            <input id="search-text" type="text" placeholder="Search">
+                        </div>
+                        <span class="clear"></span>
+                    </div>
+                    
+                </div>    
+            </div>
+            <ul class="menu-container">
+                <li><a href="#">Categorias</a></li> 
+                <li><a href="#">Ofertas do dia</a></li>
+                <li><a href="#">Aulas particulares</a></li>
+                <li><a href="#">Moda Ancap</a></li>
+                <li><a href="#">Anuncie Conosco</a></li>
+            </ul>
+            
+        </div>
+
+        {% block content %}{% endblock content %}
+        <script src="{% static 'js/script.js' %}"></script>    
+    </body>
+</html>
