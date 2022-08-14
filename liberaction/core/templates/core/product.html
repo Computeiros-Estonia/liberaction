@@ -1,7 +1,12 @@
-<h1>{{ product.get_name }}</h1>
-<h5>{{ product.get_owner }}</h5>
-<h5>{{ product.get_description }}</h5>
+{% extends 'core/base.html' %}
+{% block content %}
 
-{% for picture in product.get_pictures %}
-    <img src="{{ picture.img.url }}" alt="Foto #{{ picture.index }}">
-{% endfor %}
+    <h1>{{ product.get_name }}</h1>
+    <h5>{{ product.get_owner }}</h5>
+    <h5>{{ product.get_description }}</h5>
+
+    {% for picture in product.get_pictures %}
+        <img src="{{ picture.img.url }}" alt="Foto #{{ picture.index }}">
+    {% endfor %}
+
+{% endblock content %}

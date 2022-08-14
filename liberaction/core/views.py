@@ -57,7 +57,7 @@ def product_details(request, pk):
         context = {
             'product': Product.objects.get(id=pk),
         }
-        return render(request, 'core/product.html', context)
+        return render(request, 'core/product_page_model.html', context)
     except Product.DoesNotExist:
         raise Http404('Produto não encontrado')
 
