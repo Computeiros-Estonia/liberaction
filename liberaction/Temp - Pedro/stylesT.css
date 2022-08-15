@@ -1329,6 +1329,14 @@ ul {
         width: 0;
     }
 
+    .row {
+        display: flex; flex-direction: column;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    
+    }
+
     /****************************************************************/
     /*                      Responsive Navbar                       */
     /****************************************************************/
