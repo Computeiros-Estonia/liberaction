@@ -22,10 +22,15 @@ def test_create_service_status_code(create_service_request):
     assert create_service_request.status_code == 200
 
 def test_form_present(create_service_request):
-    form = create_service_request.context['form']
-    for field in form:
-        assertContains(create_service_request, f'name="base-{field.name}"')
     assertContains(create_service_request, f'<form action="{reverse("core:create_service")}"')
+    base_form = create_service_request.context['base_form']
+    for field in base_form:
+        assertContains(create_service_request, f'name="base-{field.name}"')
+    service_form = create_service_request.context['service_form']
+    for field in service_form:
+        if field.name == 'base':
+            continue
+        assertContains(create_service_request, f'name="service-{field.name}"')
 
 def test_submit_btn_present(create_service_request):
     assertContains(create_service_request, f'<button type="submit"')
