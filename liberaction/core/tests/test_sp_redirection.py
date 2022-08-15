@@ -1,12 +1,8 @@
 # This tests the page for service vs. product redirection
 import pytest
-from pytest_django.asserts import assertContains
 from django.urls import reverse
-from liberaction.users.models import User
+from pytest_django.asserts import assertContains
 
-@pytest.fixture
-def user(db):
-    return User.objects.create_user(email='root@liberaction.com.br', password='testingUser123')
 
 @pytest.fixture
 def response_sp_redirection(client, user):
