@@ -1,13 +1,10 @@
 import pytest
-from pytest_django.asserts import assertContains
 from django.urls import reverse
+from pytest_django.asserts import assertContains
+
 from liberaction.core.models import BaseProduct
-from liberaction.users.models import User
 from liberaction.sales.models import Cart, CartItem
 
-@pytest.fixture
-def user(db):
-    return User.objects.create_user(email='user@email.com', password='123')
 
 @pytest.fixture
 def base_product(user):
