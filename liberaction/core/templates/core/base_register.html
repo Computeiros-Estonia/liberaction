@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ptbr">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <title>
+            LiberAction {% if title %}| {{ title }}{% endif %}
+        </title>
+    
+        <link rel="stylesheet"  href="{% static 'css/styles.css' %}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+    </head>
+
+    <body>
+
+        <!-- Site Header -->
+        <div class="header">
+            <div class="navbar">
+                <div class="mobile-menu">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </div>    
+                <div class="container1">
+                    <img src="{% static 'images/logo.png' %}">
+                </div>    
+            </div>  
+        </div>
+
+        {% block content %}{% endblock content %}
+
+        <script src="{% static 'js/script.js' %}"></script>    
+    </body>
+</html>

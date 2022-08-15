@@ -1,12 +1,92 @@
-{% extends 'core/base.html' %}
+{% extends 'core/base_register.html' %}
 {% block content %}
 
-<div>
-    <form action="{% url 'register' %}" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
-    </form>
-</div>
+<form action="{% url 'register' %}" method="POST">
+    {% csrf_token %}
+    <div class="header-alt">
+        <img src="../static/images/logo.png" alt="">
+    </div>
+
+    {% if form.errors %}
+        <ul>
+            {% for err in form.non_field_errors %}
+                <li>{{ err.value }}</li>  
+            {% endfor %}
+        </ul>
+        <ul>
+            {% for err in form.mess_errors %}
+                <li>{{ err.value }}</li>  
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <div class="container-form">
+        <div class="container-form">
+            <div class="cadastro-box">
+                <h2>Quero me cadastrar</h2>
+                    <div class="single-input">
+                        <input type="text" class="input" id="id_first_name" name="first_name" required>
+                        <label for="id_first_name">Nome</label>
+                    </div>
+                    <div class="single-input">
+                        <input type="text" class="input" id="id_last_name" name="last_name" required>
+                        <label for="id_last_name">Sobrenome</label>
+                    </div>
+                    {% for choices in gender_choices %}
+                        <div class="single-input">
+                            <input type="radio" class="input" id="id_gender" name="gender" value="{{ choices|first }}">
+                            <label for="id_gender">{{ choices|last }}</label>
+                        </div>
+                    {% endfor %}
+
+                    <div class="single-input">
+                        <input type="date" class="input" id="id_birth_date" name="birth_date" required>
+                        <!-- <label for="dt_nasc">Data de nascimento</label> -->
+                    </div>
+                    <div class="single-input">
+                        <input type="text" class="input" id="id_cpf" name="cpf"  required>
+                        <label for="cpf">CPF ou CNPJ</label>
+                    </div>
+                    <div class="single-input">
+                        <input type="text" class="input" id="id_email" name="email" required>
+                        <label for="email">E-mail</label>
+                    </div>
+                    <div class="single-input">
+                        <input type="password" class="input" id="id_password1" name="password1" required>
+                        <label for="senha">Crie uma senha</label>
+                    </div>
+                    <div class="single-input">
+                        <input type="password" class="input" id="id_password2" name="password2" required>
+                        <label for="corfirmacao_senha">Confirme sua senha</label>
+                    </div>
+                    
+                    <button type="submit">Continuar</button>
+                    <h6>Não se preocupe, nossa plataforma é 100% segura.<br> Ao cadastrar, você concorda com a nossa
+                        <a href="">política de privacidade</a>
+                    </h6> 
+                    <p>Já tem cadastro? <a href="{% url 'login' %}">Entrar</a></p>
+                </div>
+            </div>        
+        </div>
+
+
+
+    <script>
+        // Criar validação para garantir que somente uma opção foi selecionada
+
+        let checkGender = document.querySelectorAll('.check');
+        
+        checkGender[0].addEventListener('click', () => {
+            checkGender[0].classList.toggle('active')  
+        })
+        checkGender[1].addEventListener('click', () => {
+            checkGender[1].classList.toggle('active')   
+        })
+        checkGender[2].addEventListener('click', () => {
+            checkGender[2].classList.toggle('active')   
+        })
+
+    </script>
+</form>
 
 {% endblock content %}
