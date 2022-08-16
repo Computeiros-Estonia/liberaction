@@ -1329,12 +1329,23 @@ ul {
         width: 0;
     }
 
+    /* Mudanças de responsividade - Pedro */
     .row {
         display: flex; flex-direction: column;
         align-items: center;
         flex-wrap: wrap;
         justify-content: space-around;
     
+    }
+
+    .container-rating {
+        padding: 30px;
+        width: 85%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 10rem;
+        margin-bottom: -50px;
     }
 
     /****************************************************************/
@@ -1422,10 +1433,18 @@ ul {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-around;
+        justify-content: space-evenly;
         margin: 0;
         visibility: visible;
         transition: .5s;
+    }
+
+    .menu-container li a{
+        font-size: 40px;
+    }
+
+    .menu-container li a:hover{
+        color: white;
     }
 
     .mobile-search {
@@ -1608,8 +1627,11 @@ ul {
     /* margin: 30px; */
     width: 85%;
     display: flex;
-    justify-content: center;
+    justify-content:flex-start;
     align-items: center;
+    margin-left: 5rem;
+    margin-left: 5rem;
+    margin-bottom: -3rem;
 }
 
 .rating {
@@ -1676,7 +1698,7 @@ ul {
 
 .single-product h4 {
     margin: 20px 0;
-    font-size: 22px;
+    font-size: 40px;
     font-weight: bold;
 }
 
@@ -1684,6 +1706,8 @@ ul {
     display: block;
     padding: 10px;
     margin-top: 20px;
+    text-align: center;
+    width: 100px;
 }
 
 .single-product input {
@@ -1728,10 +1752,11 @@ input:focus {
 .small-container input {
     border: 1px solid rgb(160, 158, 158);
     outline: none;
-    width: 30%;
+    width: 100px;
     height: 50px;
     border-radius: 10px;
     padding: 10px;
+    text-align: center;
 }
 
 .container-asks {
