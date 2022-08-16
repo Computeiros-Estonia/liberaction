@@ -3,8 +3,6 @@ from .models import BaseProduct, Product, Service, Tag
 from liberaction.users.models import User
 
 class BaseProductForm(forms.ModelForm):
-    images = forms.FileField(
-        widget=forms.ClearableFileInput(attrs={'multiple': True}), required=False)
     owner = forms.ModelChoiceField(
         queryset=User.objects.all(), disabled=True,
         widget=forms.HiddenInput()
