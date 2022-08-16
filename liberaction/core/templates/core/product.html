@@ -1,7 +1,182 @@
-<h1>{{ product.get_name }}</h1>
+<!--<h1>{{ product.get_name }}</h1>
 <h5>{{ product.get_owner }}</h5>
-<h5>{{ product.get_description }}</h5>
+<h5>{{ product.get_description }}</h5> -->
 
 {% for picture in product.get_pictures %}
     <img src="{{ picture.img.url }}" alt="Foto #{{ picture.index }}">
 {% endfor %}
+
+
+    <!-- Single Product Details-->
+    <div class="small-container single-product">
+        <div class="row">
+            <div class="col-2">
+                <img src="images/gallery-1.jpg" alt="" width="100%" id="ProductImg">
+                <div class="small-img-row">
+
+                    <div class="small-img-col">
+                        <img src="images/gallery-1.jpg" alt="" width="100%" class="small-img">
+                    </div>
+
+                    <div class="small-img-col">
+                        <img src="images/gallery-2.jpg" alt="" width="100%" class="small-img">
+                    </div>
+
+                    <div class="small-img-col">
+                        <img src="images/gallery-3.jpg" alt="" width="100%" class="small-img">
+                    </div>
+
+                    <div class="small-img-col">
+                        <img src="images/gallery-4.jpg" alt="" width="100%" class="small-img">
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-2">
+                <p>Home / Moda Ancap</p>
+                <h1>{{ product.get_name }}</h1>
+                <div class="container-rating">
+                    <div class="rating">
+                        <input type="radio" name="star" id="star1"><label for="star1">
+                        </label>
+                        <input type="radio" name="star" id="star2"><label for="star2">
+                        </label>
+                        <input type="radio" name="star" id="star3"><label for="star3">
+                        </label>
+                        <input type="radio" name="star" id="star4"><label for="star4">
+                        </label>
+                        <input type="radio" name="star" id="star5"><label for="star5">
+                        </label>
+                    </div>
+                </div>
+                <h4>R$50,00</h4>
+
+                <select class="product-size-selection"> <!--Pedro: Nova classe criada-->
+                    <option>Tamanho</option>
+                    <option>GG</option>
+                    <option>G</option>
+                    <option>M</option>
+                    <option>P</option>
+                    <option>PP</option>
+                </select>
+
+                <input type="number" value="1"><br>
+                <a href="" class="btn"> Comprar Agora</a>
+                <a href="" class="btn">Adicione no carrinho</a>
+                <h3>Detalhes do Produto</h3>
+                <br>
+
+                <a id="about_btn" class="btn">Sobre</a> <a id="metrics_btn" class="btn">Medidas,etc...</a>
+                    <p id="product_description">{{ product.get_description }}</p>
+                <!--<p id="product_description">
+                    
+                    Está é uma camiseta na cor vinho da marca PUMA, da coleçãoMen's Active T-shirt.
+                    Combine ela com um par de shorts esportivos e seus exercícios matinais
+                    com a rapaziada ancap serão inesquecíveis. 
+                </p>-->
+            </div>
+
+        </div>
+    </div>
+
+    <!-- You can also be interested in  -->
+    <div class="categories">
+        <div class="small-container">
+            <h2 class="title">Você também pode se interessar</h2>
+            <div class="row">
+                <div class="col-3">
+                    <img src="images/category-1.jpg" alt="">
+                    <h4>Produto 1</h4>
+                </div>
+
+                <div class="col-3">
+                    <img src="images/category-2.jpg" alt="">
+                    <h4>Produto 2</h4>
+                </div>
+
+                <div class="col-3">
+                    <img src="images/category-3.jpg" alt="">
+                    <h4>Produto 3</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Questions Start  -->
+    <div class="categories">
+        <div class="small-container">
+            <h2 class="title">Perguntas, avaliações, e mais</h2>
+        </div>
+        <div class="small-container">
+            <div class="container-asks">
+                <input type="text" placeholder="Digite seu comentário">
+                <a href="" class="btn"> Comente</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer starts (Pedro: Importado do Base.html Deletar depois) -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-3">
+                    <h3>INSTITUCIONAL</h3>
+                    <ul>
+                        <li>Politica de Privacidade</li>
+                        <li>Nossos valores</li>
+                    </ul>
+                </div>
+                <div class="footer-col-3">
+                    <h3>ATENDIMENTO</h3>
+                    <ul>
+                        <li>Dúvidas Frequentes</li>
+                        <li>Troca e Devoluções</li>
+                        <li>Whatsapp<br> (00)00000-0000 </li>
+                    </ul>
+                </div>
+                <div class="footer-col-3">
+                    <h3>SUA CONTA</h3>
+                    <ul>
+                        <li>Acesso ao Painel</li>
+                        <li>Meus Pedidos</li>
+                        <li>Meus Dados</li>
+                    </ul>
+                </div>
+
+                <div class="footer-col-4">
+                    <h3>FORMAS DE PAGAMENTO</h3>
+
+                </div>
+
+                <div class="footer-col-4">
+                    <h3>REDES SOCIAIS</h3>
+                    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111392.png">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1384/1384031.png">
+
+                </div>
+            </div>
+            <p class="copyright">2021 - Powered by Estonia Tech</p>
+        </div>
+    </div>
+
+</div>
+
+    <script>
+        var ProductImg = document.getElementById("ProductImg");
+        var SmallImg = document.getElementsByClassName("small-img")
+        SmallImg[0].onclick = function(){
+            ProductImg.src = SmallImg[0].src  
+        }
+        SmallImg[1].onclick = function(){
+            ProductImg.src = SmallImg[1].src  
+        }
+        SmallImg[2].onclick = function(){
+            ProductImg.src = SmallImg[2].src  
+        }
+        SmallImg[3].onclick = function(){
+            ProductImg.src = SmallImg[3].src  
+        }
+    </script>
+
