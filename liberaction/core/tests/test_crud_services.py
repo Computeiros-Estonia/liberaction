@@ -67,7 +67,7 @@ def create_service_post(client, user, tags):
 #     assert not create_service_post.context['service_form'].errors
 
 def test_create_service_redirection(create_service_post):
-    assertRedirects(create_service_post, reverse('core:create_service'))
+    assertRedirects(create_service_post, reverse('core:index'))
 
 def test_base_service_exists(create_service_post):
     assert BaseProduct.objects.exists()
@@ -116,7 +116,7 @@ def test_edit_service_status_code(get_edit_service):
     assert get_edit_service.status_code == 200
 
 def test_edit_form_present(get_edit_service, service):
-    form = get_edit_service.context['form']
+    form = get_edit_service.context['base_form']
     for field in form:
         assertContains(get_edit_service, f'name="base-{field.name}"')
     assertContains(get_edit_service, f'<form action="{reverse("core:edit_service", kwargs={"pk":service.pk})}"')
