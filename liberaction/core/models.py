@@ -93,12 +93,12 @@ class Album(models.Model):
 
     def __str__(self):
         return f'{self.base_product}'
-    
+
     def get_pictures(self):
         pictures = Picture.objects.filter(album=self)
         if pictures:
             return pictures.order_by('index')
-
+    
 class Picture(models.Model):
     img = models.ImageField(verbose_name='imagem', upload_to='products')
     index = models.IntegerField(verbose_name='índice')
