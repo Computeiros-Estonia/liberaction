@@ -7,10 +7,12 @@ from .models import Album, BaseProduct, Picture, Product, Service
 from .forms import BaseProductForm, ProductForm, ServiceForm
 
 def index(request):
-    products = Product.objects.all()
+    base_products = BaseProduct.objects.all()
+    popular_bp = sorted(base_products, key=lambda p: p.get_review_avg_score(), reverse=True)
 
     context = {
-        'products': products,
+        'base_products': base_products,
+        'popular_bp': popular_bp,
     }
     return render(request, 'core/index.html', context)
 
