@@ -1,16 +1,12 @@
 import os
-from pathlib import Path
 import pytest
-from pytest_django.asserts import assertContains, assertRedirects
-from liberaction.users.models import User
+from pathlib import Path
 from django.urls import reverse
+from pytest_django.asserts import assertContains, assertRedirects
 
 from liberaction.core.models import Album, BaseProduct, Picture, Product, Tag
 
 # Create
-@pytest.fixture
-def user(db):
-    return User.objects.create(email='root@liberaction.com.br', password='toor')
 
 # GET
 @pytest.fixture
@@ -22,7 +18,7 @@ def test_create_product_status_code(create_product_request):
     assert create_product_request.status_code == 200
 
 def test_form_present(create_product_request):
-    form = create_product_request.context['form']
+    form = create_product_request.context['base_form']
     for field in form:
         assertContains(create_product_request, f'name="base-{field.name}"')
     assertContains(create_product_request, f'<form action="{reverse("core:create_product")}"')
@@ -129,7 +125,7 @@ def test_edit_product_status_code(get_edit_product):
     assert get_edit_product.status_code == 200
 
 def test_edit_form_present(get_edit_product, product):
-    form = get_edit_product.context['form']
+    form = get_edit_product.context['base_form']
     for field in form:
         assertContains(get_edit_product, f'name="base-{field.name}"')
     assertContains(get_edit_product, f'<form action="{reverse("core:edit_product", kwargs={"pk":product.pk})}"')

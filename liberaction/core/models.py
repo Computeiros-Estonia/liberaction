@@ -35,7 +35,13 @@ class BaseProduct(models.Model):
             return None
     
     def get_reviews(self):
-        return Review.objects.filter(product=self)
+        return Review.objects.filter(base_product=self)
+    
+    def get_review_avg_score(self):
+        reviews = self.get_reviews()
+        total = sum(r.score for r in reviews)
+        return round(total / len(reviews), 1) if len(reviews) > 0 else 0
+
 
 class Service(models.Model):
     base = models.OneToOneField(BaseProduct, on_delete=models.CASCADE)
@@ -93,12 +99,12 @@ class Album(models.Model):
 
     def __str__(self):
         return f'{self.base_product}'
-    
+
     def get_pictures(self):
         pictures = Picture.objects.filter(album=self)
         if pictures:
             return pictures.order_by('index')
-
+    
 class Picture(models.Model):
     img = models.ImageField(verbose_name='imagem', upload_to='products')
     index = models.IntegerField(verbose_name='índice')

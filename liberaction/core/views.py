@@ -7,10 +7,12 @@ from .models import Album, BaseProduct, Picture, Product, Service
 from .forms import BaseProductForm, ProductForm, ServiceForm
 
 def index(request):
-    products = Product.objects.all()
+    base_products = BaseProduct.objects.all()
+    popular_bp = sorted(base_products, key=lambda p: p.get_review_avg_score(), reverse=True)
 
     context = {
-        'products': products,
+        'base_products': base_products,
+        'popular_bp': popular_bp,
     }
     return render(request, 'core/index.html', context)
 
@@ -110,15 +112,15 @@ def create_service(request):
                 if request.FILES:
                     album = Album.objects.create(base_product=base_product)
                     try:
-                        files = request.FILES.getlist('images')
+                        files = request.FILES.getlist('imgs')
                         i=0
                         for img in files:
                             Picture.objects.create(img=img, index=i, album=album)
                             i+=1
-                        return redirect('core:create_service')
                     except Exception as e:
                         messages.error(request, 'Falha ao fazer o upload das fotos.')
                         album.delete()
+                return redirect('core:index')
             else:
                 messages.error(request, 'Falha ao criar serviço.')
                 base_product.delete()
