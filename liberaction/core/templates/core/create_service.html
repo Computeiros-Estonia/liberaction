@@ -8,54 +8,53 @@
         {% csrf_token %}
         {{ base_form.owner }}
         <div class="container-form">
-            <div class="container-form">
-                <div class="cadastro-box">
-                    {% if base_form.errors %}
-                        <ul>
-                        {% for err in base_form.errors %}
-                            <li>{{ err.message }}</li>
-                        {% endfor %}
-                        </ul>
-                    {% endif %}
+            
+            <div class="cadastro-box">
+                {% if base_form.errors %}
+                    <ul>
+                    {% for err in base_form.errors %}
+                        <li>{{ err.message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
 
-                    {% if service_form.errors %}
-                        <ul>
-                        {% for err in service_form.errors %}
-                            <li>{{ err.message }}</li>
-                        {% endfor %}
-                        </ul>
-                    {% endif %}
+                {% if service_form.errors %}
+                    <ul>
+                    {% for err in service_form.errors %}
+                        <li>{{ err.message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
 
-                    <h2>Fale um pouco sobre o serviço que quer anunciar =D </h2>
-                    {{ base_form.tags }}
+                <h2>Fale um pouco sobre o serviço que quer anunciar =D </h2>
+                {{ base_form.tags }}
 
-                    <div class="single-input">
-                        <input type="text" class="input" id="id_base-name" name="base-name" required>
-                        <label for="id_base-name">Nome do Serviço</label>
-                    </div>
-                    
-                    <div class="single-input">
-                        <input type="number" class="number-input" id="id_base-price" name="base-price" required>
-                        <label for="id_base-price">Preço</label>
-
-                        <!-- <div class="check"></div>Valor a negociar -->
-                        {{ service_form.is_negotiable.label }}
-                        {{ service_form.is_negotiable }}
-                    </div>
-
-                    <div class="single-input">
-                        <input type="text" class="description-input" id="id_base-description" name="base-description" required>
-                        <label for="id_base-description">Descrição do serviço</label>
-                    </div>
-
-                    <label for="id_imgs">Fotos</label>
-                    <div class="single-input">
-                        <input type="file" id="id_imgs" name="imgs" multiple required>
-                    </div>
-
-                    <button type="submit">Anunciar Agora!</button>
-
+                <div class="single-input">
+                    <input type="text" class="input" id="id_base-name" name="base-name" required>
+                    <label for="id_base-name">Nome do Serviço</label>
                 </div>
+                
+                <div class="single-input">
+                    <input type="number" class="number-input" id="id_base-price" name="base-price" required>
+                    <label for="id_base-price">Preço</label>
+
+                    <!-- <div class="check"></div>Valor a negociar -->
+                    {{ service_form.is_negotiable.label }}
+                    {{ service_form.is_negotiable }}
+                </div>
+
+                <div class="single-input">
+                    <input type="text" class="description-input" id="id_base-description" name="base-description" required>
+                    <label for="id_base-description">Descrição do serviço</label>
+                </div>
+
+                <label for="id_imgs">Fotos</label>
+                <div class="single-input">
+                    <input type="file" id="id_imgs" name="imgs" multiple required>
+                </div>
+
+                <button type="submit">Anunciar Agora!</button>
+
             </div>
         </div>
     

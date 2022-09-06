@@ -134,7 +134,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 500px;
+    position: relative;
+    min-height: 850px;
 }
 
 .login-box {
@@ -180,14 +181,14 @@ body {
     transition: 0.5s ease-in-out;
 }
 
-.description-input label {
+/* .description-input label {
     position: absolute;
     bottom: 10px;
     left: 5px;
     color: rgb(150,150,150);
     cursor: text;
     transition: 0.5s ease-in-out;
-}
+} */
 
 .description-input:focus, .description-input:valid {
     border: 2px solid #ffad17;
@@ -333,7 +334,7 @@ body {
     height: 830px;
     border-radius: 15px;
     position: absolute;
-    top: 105px;
+    top: 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
