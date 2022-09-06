@@ -68,65 +68,64 @@
 
         
 
-<a href="/"></a>
+        <a href="/"></a>
 
-<div>
-    <form action="/create_product/" method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="csrfmiddlewaretoken" value="MN55K68Zp4uTDXOgupcsWyYaofDW0vSRz5P0vwatBEMkxho5D9Tj4kChNz5NDhTu">
-        
-        <div class="container-form">
-            <div class="cadastro-box">
-                <input type="hidden" name="csrfmiddlewaretoken" value="jxh6U5fexxWKH6XswrJs7FWMOdVSyTbZ6P11FvhIJ7ebBqxhFbqjfrATdxnJbFcC">
-                
-                <h2>
-                    Fale um pouco sobre o produto que quer anunciar =D
-                </h2>
 
-                <div class="description-input">
-                    <select name="base-tags" id="id_base-tags" multiple></select>
-                    <label for="id_base-tags">Tags:</label>
-                </div>
+        <form action="/create_product/" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="csrfmiddlewaretoken" value="MN55K68Zp4uTDXOgupcsWyYaofDW0vSRz5P0vwatBEMkxho5D9Tj4kChNz5NDhTu">
+            
+            <div class="container-form">
+                <div class="cadastro-box">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="jxh6U5fexxWKH6XswrJs7FWMOdVSyTbZ6P11FvhIJ7ebBqxhFbqjfrATdxnJbFcC">
+                    
+                    <div class="titulo-formulario">
+                        <h2>Fale um pouco sobre o produto que quer anunciar =D</h2>
+                    </div>
 
-                <div class="single-input">
-                <input class="input" type="text" name="base-name" maxlength="50" required id="id_base-name">
-                <label for="id_base-name">Nome:</label>
-                </div>
+                    <div class="description-input">
+                        <select name="base-tags" id="id_base-tags" multiple></select>
+                        <label for="id_base-tags">Tags:</label>
+                    </div>
 
-                <div style="margin-bottom: 10px;">
-                    <label for="id_product-is_new">Novo:</label>
-                    <input type="checkbox" name="product-is_new" id="id_product-is_new" checked>
-                    <input type="hidden" name="product-base" disabled id="id_product-base">
-                </div>
-        
-                <div class="single-input">
-                    <input class="number-input" type="number" name="base-price" step="any" required id="id_base-price">
-                    <input type="hidden" name="base-owner" disabled id="id_base-owner">
-                    <label for="id_base-price">Preço:</label>
-                    <!-- <div class="check"></div>Valor a negociar -->
-                    <div>
-                        Negociável
-                        <input type="checkbox" style="margin-left: 3px;">
+                    <div class="single-input">
+                    <input class="input" type="text" name="base-name" maxlength="50" required id="id_base-name">
+                    <label for="id_base-name">Nome:</label>
+                    </div>
+
+                    <div style="margin-bottom: 10px;">
+                        <label for="id_product-is_new">Novo:</label>
+                        <input type="checkbox" name="product-is_new" id="id_product-is_new" checked>
+                        <input type="hidden" name="product-base" disabled id="id_product-base">
+                    </div>
+            
+                    <div class="single-input">
+                        <input class="number-input" type="number" name="base-price" step="any" required id="id_base-price">
+                        <input type="hidden" name="base-owner" disabled id="id_base-owner">
+                        <label for="id_base-price">Preço:</label>
+                        <!-- <div class="check"></div>Valor a negociar -->
+                        <div>
+                            Negociável
+                            <input type="checkbox" style="margin-left: 3px;">
+                        </div>
+                    </div>
+
+                    <div class="single-input">
+                        <textarea class="description-input" name="base-description" cols="40" rows="10" required id="id_base-description"></textarea>
+                        <label for="id_base-description">Descrição:</label>
+                    </div>
+
+                    <label for="id_imgs">Fotos</label>
+                    <div class="single-input">
+                        <input type="file" id="id_imgs" name="imgs" multiple required>
+                    </div>
+                    
+                    <div class="single-input">
+                        <button type="submit">Submit</button>
                     </div>
                 </div>
-
-                <div class="single-input">
-                    <textarea class="description-input" name="base-description" cols="40" rows="10" required id="id_base-description"></textarea>
-                    <label for="id_base-description">Descrição:</label>
-                </div>
-
-
-                <label for="id_imgs">Fotos</label>
-                <div class="single-input">
-                    <input type="file" id="id_imgs" name="imgs" multiple required>
-                </div>
-                
-                <div class="single-input">
-                    <button type="submit">Submit</button>
-                </div>
             </div>
-        </div>
-    </form>
-</div>
+        </form>
+
 
 
 

@@ -130,13 +130,13 @@ body {
     width: 13%;
 }
 
-.container-form {
+/* .container-form {
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    min-height: 850px;
-}
+    height: auto;
+} */
 
 .login-box {
     background-color: #fff;
@@ -157,7 +157,7 @@ body {
     margin-bottom: 35px;
 }
 
-.description-input{
+/* .description-input{
     position: relative;
     margin: 0px 0;
     display: flex;
@@ -181,14 +181,14 @@ body {
     transition: 0.5s ease-in-out;
 }
 
-/* .description-input label {
+.description-input label {
     position: absolute;
     bottom: 10px;
     left: 5px;
     color: rgb(150,150,150);
     cursor: text;
     transition: 0.5s ease-in-out;
-} */
+}
 
 .description-input:focus, .description-input:valid {
     border: 2px solid #ffad17;
@@ -217,7 +217,7 @@ body {
 .description-input ul li a:hover {
     color: #ffad17;
     display: block;
-}
+} */
 
 .number-input{
     position: relative;
@@ -253,7 +253,7 @@ body {
     color: black;
 }
 
-.single-input {
+/* .single-input {
     position: relative;
     margin: 15px 0;
     display: flex;
@@ -280,7 +280,7 @@ body {
     color: rgb(150,150,150);
     cursor: text;
     transition: 0.5s ease-in-out;
-}
+} */
 
 .input {
     width: 300px;
@@ -328,7 +328,7 @@ body {
     margin: 5px;
 }
 
-.cadastro-box {
+/* .cadastro-box {
     background-color: #fff;
     width: 450px;
     height: 830px;
@@ -340,7 +340,7 @@ body {
     justify-content: center;
     align-items: center;
     padding: 40px;
-}
+} */
 
 .check {
     border-radius: 20px;
@@ -1526,3 +1526,106 @@ ul {
 /****************************************************************/
 /*                              EOF                             */
 /****************************************************************/
+
+.container-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: auto;
+}
+
+.titulo-formulario{
+    width: auto;
+    max-width: 450px;
+    text-align: center;
+}
+.cadastro-box {
+    margin: 5px auto;
+    background-color: red/* #fff */;
+    width: auto;
+    height: auto;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+}
+
+.single-input {
+    position: relative;
+    margin: 15px 0;
+    display: flex;
+}
+.single-input label {
+    position: absolute;
+    bottom: 10px;
+    left: 5px;
+    color: rgb(150,150,150);
+    cursor: text;
+    transition: 0.5s ease-in-out;
+}
+
+.description-input{
+    position: relative;
+    margin: 0px 0;
+    display: flex;
+    width: 300px;
+    height: 285px;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+    outline: 0;
+    font-size: 16px;
+    color: rgb(80,80,80);
+    transition: 0.5s ease-in-out;  
+}
+
+.description-input label {
+    position: absolute;
+    bottom: 100px;
+    left: 5px;
+    color: rgb(150,150,150);
+    cursor: text;
+    transition: 0.5s ease-in-out;
+}
+
+.description-input label {
+    position: absolute;
+    bottom: 10px;
+    left: 5px;
+    color: rgb(150,150,150);
+    cursor: text;
+    transition: 0.5s ease-in-out;
+}
+
+.description-input:focus, .description-input:valid {
+    border: 2px solid #ffad17;
+}
+.description-input:focus ~ label, .description-input:valid ~ label {
+    transform: translateY(-100px);
+    position: absolute;
+    top: -15px;
+    font-size: 12px;
+    color: black;
+}
+
+.description-input ul{
+    list-style-type:none;
+    padding: 0;
+}
+
+.description-input ul li{
+    background-color: var(#ffad17);
+}
+
+.description-input ul li a{
+    color: #000;
+    padding: 5px;
+    display: inline-block;
+}
+
+.description-input ul li a:hover {
+    color: #ffad17;
+    display: block;
+}
