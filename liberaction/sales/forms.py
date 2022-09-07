@@ -1,15 +1,17 @@
 from django import forms
-from .models import Cart, CartItem
+
+from .models import Basket, BasketItem
 from liberaction.core.models import BaseProduct
 
-class CartForm(forms.ModelForm):
+
+class BasketForm(forms.ModelForm):
     class Meta:
-        model = Cart
+        model = Basket
         fields = '__all__'
 
-class CartItemForm(forms.ModelForm):
-    cart = forms.ModelChoiceField(
-        queryset=Cart.objects.all(),
+class BasketItemForm(forms.ModelForm):
+    basket = forms.ModelChoiceField(
+        queryset=Basket.objects.all(),
         widget=forms.HiddenInput()
     )
     product = forms.ModelChoiceField(
@@ -17,5 +19,5 @@ class CartItemForm(forms.ModelForm):
         disabled=True
     )
     class Meta:
-        model = CartItem
+        model = BasketItem
         fields = '__all__'

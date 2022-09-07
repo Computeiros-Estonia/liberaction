@@ -1,25 +1,11 @@
-from django.http import Http404
-from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
 from django.forms import modelformset_factory
-from .forms import CartItemForm
-from .models import Cart, CartItem
+from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required
+
+from .forms import BasketItemForm
+from .models import Basket, BasketItem
 
 @login_required(login_url='/users/login/')
-def cart(request, pk):
-    try:
-        cart = Cart.objects.get(pk=pk)
-    except Cart.DoesNotExist:
-        return Http404()
-        
-    CartItemFormSet = modelformset_factory(CartItem, form=CartItemForm, extra=0)
-    if request.method == 'POST':
-        pass
-    else:
-        formset = CartItemFormSet(queryset=CartItem.objects.filter(cart=cart))
-    
-    context = {
-        'title': 'Carrinho de Compras',
-        'formset': formset,
-    }
-    return render(request, 'sales/cart.html', context)
+def basket_summary(request):
+    basket_filter = Basket.objects.filter(customer=request.user, is_active=True)
+    basket = basket_filter[0] if basket_filter else Basket.objects.create(customer=request.user)
