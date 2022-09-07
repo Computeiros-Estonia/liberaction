@@ -29,6 +29,7 @@ def resposta_register_post(client, db):
         'password2': 'testingUser123',
     })
 
+# For debug purposes only, DO NOT UNCOMMENT.
 # def test_sem_erros(resposta_register_post):
 #     assert not resposta_register_post.context['form'].errors
 
