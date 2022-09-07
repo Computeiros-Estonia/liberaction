@@ -44,7 +44,7 @@ class Sale(models.Model):
                            (4, '4x'),(5, '5x'),(6, '6x'),
                            (7, '7x'),(8, '8x'),(9, '9x'),
                            (10, '10x'),(11, '11x'),(12, '12x'))
-    installment = models.IntegerField("parcelas", choices=INSTALLMENT_CHOICES, default=1)
+    installments = models.IntegerField("parcelas", choices=INSTALLMENT_CHOICES, default=1)
 
     class Meta:
         verbose_name = 'venda'
