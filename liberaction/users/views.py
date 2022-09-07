@@ -13,6 +13,9 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
+            next_url = request.POST.get('next')
+            if next_url:
+                return redirect(next_url)
             return redirect('core:index')
     else:
         form = UserCreationForm()

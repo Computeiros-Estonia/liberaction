@@ -1,3 +1,4 @@
+from email.policy import default
 from django import forms
 
 from .models import Basket, BasketItem
@@ -19,6 +20,7 @@ class BasketItemForm(forms.ModelForm):
         widget=forms.HiddenInput(),
         disabled=True,
     )
+    product_count = forms.IntegerField(required=True, min_value=1, label='Unidades', initial=1)
     class Meta:
         model = BasketItem
         fields = '__all__'

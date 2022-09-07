@@ -6,6 +6,8 @@ from django.shortcuts import get_object_or_404, redirect, render
 
 from .models import Album, BaseProduct, Picture, Product, Service
 from .forms import BaseProductForm, ProductForm, ServiceForm
+from ..sales.forms import BasketItemForm
+from ..sales.models import Basket
 
 def index(request):
     products = Product.objects.all()
@@ -55,8 +57,16 @@ def create_product(request):
 
 def product_details(request, pk):
     base_product = get_object_or_404(BaseProduct, pk=pk)
+    if request.user.is_authenticated:
+        basket_filter = Basket.objects.filter(customer=request.user, is_active=True)
+        basket = basket_filter[0] if basket_filter else Basket.objects.create(customer=request.user)
+        bitem_form = BasketItemForm(initial={'basket': basket.pk, 'product': pk, 'product_count': 1})
+    else:
+        bitem_form = BasketItemForm()
+
     context = {
         'base_product': base_product,
+        'bitem_form': bitem_form,
     }
     return render(request, 'core/product.html', context)
 

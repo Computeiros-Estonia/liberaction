@@ -8,4 +8,14 @@
     <img src="{{ picture.img.url }}" alt="Foto #{{ picture.index }}">
 {% endfor %}
 
+{% if request.user.is_authenticated %}
+    <form action="{% url 'sales:basket_add' %}" method="POST">
+        {% csrf_token %}
+        {{ bitem_form.as_table }}
+        <button type="submit">Adicionar a cesta</button>
+    </form>
+{% else %}
+    <a href="{% url 'register' %}?next={% url 'core:product' base_product.pk %}">Registre-se para comprar</a>
+{% endif %}
+
 {% endwith %}

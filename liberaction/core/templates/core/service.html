@@ -8,4 +8,10 @@
     <img src="{{ picture.img.url }}" alt="Foto #{{ picture.index }}">
 {% endfor %}
 
+<form action="{% url 'sales:basket_add' %}" method="POST">
+    {% csrf_token %}
+    {{ basket_add_form.as_table }}
+    <button type="submit">Adicionar a cesta</button>
+</form>
+
 {% endwith %}
