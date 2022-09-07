@@ -26,17 +26,17 @@
                     </ul>
                 {% endif %}
 
-                <h2>Fale um pouco sobre o serviço que quer anunciar =D </h2>
+                <div class="titulo-formulario"><h2>Fale um pouco sobre o serviço que quer anunciar =D </h2></div>
                 {{ base_form.tags }}
 
                 <div class="single-input">
                     <input type="text" class="input" id="id_base-name" name="base-name" required>
-                    <label for="id_base-name">Nome do Serviço</label>
+                    <label for="id_base-name">Nome do Serviço:</label>
                 </div>
                 
                 <div class="single-input">
                     <input type="number" class="number-input" id="id_base-price" name="base-price" required>
-                    <label for="id_base-price">Preço</label>
+                    <label for="id_base-price">Preço:</label>
 
                     <!-- <div class="check"></div>Valor a negociar -->
                     {{ service_form.is_negotiable.label }}
@@ -45,7 +45,7 @@
 
                 <div class="single-input">
                     <input type="text" class="description-input" id="id_base-description" name="base-description" required>
-                    <label for="id_base-description">Descrição do serviço</label>
+                    <label for="id_base-description">Descrição do serviço:</label>
                 </div>
 
                 <label for="id_imgs">Fotos</label>
