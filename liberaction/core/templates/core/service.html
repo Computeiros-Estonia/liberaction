@@ -1,3 +1,5 @@
+{% with base_product.service as service %}
+
 <h1>{{ service.get_name }}</h1>
 <h5>{{ service.get_owner }}</h5>
 <h5>{{ service.get_description }}</h5>
@@ -5,3 +7,5 @@
 {% for picture in service.get_pictures %}
     <img src="{{ picture.img.url }}" alt="Foto #{{ picture.index }}">
 {% endfor %}
+
+{% endwith %}

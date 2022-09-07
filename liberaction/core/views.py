@@ -1,8 +1,9 @@
 from django.urls import reverse
-from django.contrib.auth.decorators import login_required
-from django.contrib import messages
 from django.http import Http404
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
+
 from .models import Album, BaseProduct, Picture, Product, Service
 from .forms import BaseProductForm, ProductForm, ServiceForm
 
@@ -53,13 +54,11 @@ def create_product(request):
     return render(request, 'core/create_product.html', context)
 
 def product_details(request, pk):
-    try:
-        context = {
-            'product': Product.objects.get(id=pk),
-        }
-        return render(request, 'core/product.html', context)
-    except Product.DoesNotExist:
-        raise Http404('Produto não encontrado')
+    base_product = get_object_or_404(BaseProduct, pk=pk)
+    context = {
+        'base_product': base_product,
+    }
+    return render(request, 'core/product.html', context)
 
 @login_required(login_url='/users/login/')
 def edit_product(request, pk):
@@ -134,13 +133,11 @@ def create_service(request):
     return render(request, 'core/create_service.html', context)
 
 def service_details(request, pk):
-    try:
-        context = {
-            'service': Service.objects.get(id=pk),
-        }
-        return render(request, 'core/service.html', context)
-    except Service.DoesNotExist:
-        raise Http404('Serviço não encontrado')
+    base_product = get_object_or_404(BaseProduct, pk=pk)
+    context = {
+        'base_product': base_product,
+    }
+    return render(request, 'core/service.html', context)
 
 @login_required(login_url='/users/login/')
 def edit_service(request, pk):

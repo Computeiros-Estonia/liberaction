@@ -1,3 +1,5 @@
+{% with base_product.product as product %}
+
 <h1>{{ product.get_name }}</h1>
 <h5>{{ product.get_owner }}</h5>
 <h5>{{ product.get_description }}</h5>
@@ -5,3 +7,5 @@
 {% for picture in product.get_pictures %}
     <img src="{{ picture.img.url }}" alt="Foto #{{ picture.index }}">
 {% endfor %}
+
+{% endwith %}
