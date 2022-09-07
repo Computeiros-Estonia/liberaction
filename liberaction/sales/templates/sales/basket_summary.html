@@ -1,0 +1,39 @@
+{% extends 'core/base.html' %}
+{% block content %}
+
+{% if title %}
+    <div>
+        <h1>{{ title }}</h1>
+    </div>
+{% endif %}
+
+<div>
+    <form action="{% url 'sales:basket_summary' %}" method="POST">
+        <!-- ========= REQUIRED INPUTS ============ -->
+        <div>
+            {% csrf_token %}
+            {{ item_formset.management_form.as_p }}
+        </div>
+        <!-- ======= END REQUIRED INPUTS ========== -->
+
+        <!-- ========= FORM INPUTS ============ -->
+        <div>
+            {% for item_form in item_formset %}
+                {{ item_form.as_p }}
+            {% endfor %}
+        </div>
+        <!-- ======= END FORM INPUTS ========== -->
+
+        <!-- ======= REQUIRED BUTTONS ========== -->
+        <div>
+            <button type="submit">Save changes</button>
+            <button type="submit" name="create_sale">Continue to checkout</button>
+        </div>
+        <!-- ======= END REQUIRED BUTTONS ========== -->
+    </form>
+</div>
+<div>
+
+</div>
+
+{% endblock content %}

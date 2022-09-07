@@ -15,7 +15,7 @@ class Basket(models.Model):
         return f'Basket #{self.id}'
 
     def get_items(self):
-        return BasketItem.objects.filter(cart=self)
+        return BasketItem.objects.filter(basket=self)
     
     def get_price(self):
         return sum(i.get_price() for i in self.get_items())

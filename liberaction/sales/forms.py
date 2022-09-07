@@ -12,11 +12,12 @@ class BasketForm(forms.ModelForm):
 class BasketItemForm(forms.ModelForm):
     basket = forms.ModelChoiceField(
         queryset=Basket.objects.all(),
-        widget=forms.HiddenInput()
+        widget=forms.HiddenInput(),
     )
     product = forms.ModelChoiceField(
         queryset=BaseProduct.objects.all(),
-        disabled=True
+        widget=forms.HiddenInput(),
+        disabled=True,
     )
     class Meta:
         model = BasketItem
