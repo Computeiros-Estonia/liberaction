@@ -28,17 +28,24 @@ class User(AbstractBaseUser, PermissionsMixin):
     # User information
     username = None
     email = models.EmailField('endereço de email', max_length=255, unique=True)
-    first_name = models.CharField('nome', max_length=30)
-    last_name = models.CharField('sobrenome', max_length=30)
+    first_name = models.CharField('nome', max_length=30, null=True)
+    last_name = models.CharField('sobrenome', max_length=30, null=True)
     cpf = models.CharField('CPF', max_length=11, unique=True, blank=True, null=True)
     favorites = models.ManyToManyField('core.BaseProduct', verbose_name='favoritos')
     is_staff = models.BooleanField('staff status', default=False, help_text='Define se o usuário tem permissão de entrar no site administrativo.')
     is_active = models.BooleanField('ativo', default=True, help_text='Define se o usuário deve ser tratado como ativo. Desmarque este campo ao invés de deletar usuários.')
     is_trusty = models.BooleanField('confiável', default=False, help_text='Define se o usuário confirmou seu e-mail.')
     date_joined = models.DateTimeField('date joined', auto_now_add=True)
+    birth_date = models.DateTimeField('date de nascimento', null=True)
+    GENDER_CHOICES = (
+        ('m', 'Masculino'),
+        ('f', 'Feminino'),
+        ('o', 'Outro'),
+    )
+    gender = models.CharField("Unidade de Medida", max_length=1, choices=GENDER_CHOICES, null=True)
     # Django stuff
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name', 'cpf']
+    REQUIRED_FIELDS = []
     objects = UserManager()
 
     class Meta:

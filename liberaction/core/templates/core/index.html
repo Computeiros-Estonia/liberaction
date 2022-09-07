@@ -17,14 +17,25 @@
         </div>
         
         <!-- Featured Products starts  -->
-        {% for product in products %}
-            <h1>{{ product }}</h1>
-            <h3>{{ product.description }}</h3>
-        
-            {% for tag in product.tags.all %}
-                <h3>{{ tag }}</h3>
-            {% endfor %}
-        {% endfor %}
+        <div class="small-container">
+            <h2 class="title">Destaques</h2>
+            <div class="row">
+                {% for product in base_products|slice:":4" %}
+                <div class="col-4">
+                    <img src="{{ product.get_first_picture.img.url }}" alt="">
+                    <h4>{{ product.name }}</h4>
+                    <div class="rating">
+                        <i class="fa fa-star{% if not product.get_review_avg_score > 0.5 %}-o{% endif %}"></i>
+                        <i class="fa fa-star{% if not product.get_review_avg_score > 1.5 %}-o{% endif %}"></i>
+                        <i class="fa fa-star{% if not product.get_review_avg_score > 2.5 %}-o{% endif %}"></i>
+                        <i class="fa fa-star{% if not product.get_review_avg_score > 3.5 %}-o{% endif %}"></i>
+                        <i class="fa fa-star{% if not product.get_review_avg_score > 4.5 %}-o{% endif %}"></i>
+                    </div>
+                    <p>R${{ product.price }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
         <!------------------------------->
     
     
@@ -93,17 +104,21 @@
             <div class="small-container">
                 <h2 class="title">Mais Procurados</h2>
                 <div class="row">
-                    <div class="col-3">
-                        <!-- <img src="images/category-1.jpg" alt=""> -->
-                        <h4>Produto 1</h4>
-                    </div>
-                    <div class="col-3">
-                        <!-- <img src="images/category-2.jpg" alt=""> -->
-                        <h4>Produto 2</h4>
-                    </div>
-                    <div class="col-3">
-                        <!-- <img src="images/category-3.jpg" alt=""> -->
-                        <h4>Produto 3</h4>
+                    <div class="row">
+                        {% for product in popular_bp|slice:":4" %}
+                        <div class="col-4">
+                            <img src="{{ product.get_first_picture.img.url }}" alt="">
+                            <h4>{{ product.name }}</h4>
+                            <div class="rating">
+                                <i class="fa fa-star{% if not product.get_review_avg_score > 0.5 %}-o{% endif %}"></i>
+                                <i class="fa fa-star{% if not product.get_review_avg_score > 1.5 %}-o{% endif %}"></i>
+                                <i class="fa fa-star{% if not product.get_review_avg_score > 2.5 %}-o{% endif %}"></i>
+                                <i class="fa fa-star{% if not product.get_review_avg_score > 3.5 %}-o{% endif %}"></i>
+                                <i class="fa fa-star{% if not product.get_review_avg_score > 4.5 %}-o{% endif %}"></i>
+                            </div>
+                            <p>R${{ product.price }}</p>
+                        </div>
+                        {% endfor %}
                     </div>
                 </div> 
             </div>       

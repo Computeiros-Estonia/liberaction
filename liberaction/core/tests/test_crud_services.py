@@ -1,17 +1,12 @@
 import os
-from pathlib import Path
 import pytest
-from pytest_django.asserts import assertContains, assertRedirects
-from liberaction.users.models import User
+from pathlib import Path
 from django.urls import reverse
+from pytest_django.asserts import assertContains, assertRedirects
 
 from liberaction.core.models import Album, BaseProduct, Service, Tag
 
 # Create
-@pytest.fixture
-def user(db):
-    return User.objects.create(email='root@liberaction.com.br', password='toor')
-
 # GET
 @pytest.fixture
 def create_service_request(client, user):
@@ -22,10 +17,15 @@ def test_create_service_status_code(create_service_request):
     assert create_service_request.status_code == 200
 
 def test_form_present(create_service_request):
-    form = create_service_request.context['form']
-    for field in form:
-        assertContains(create_service_request, f'name="base-{field.name}"')
     assertContains(create_service_request, f'<form action="{reverse("core:create_service")}"')
+    base_form = create_service_request.context['base_form']
+    for field in base_form:
+        assertContains(create_service_request, f'name="base-{field.name}"')
+    service_form = create_service_request.context['service_form']
+    for field in service_form:
+        if field.name == 'base':
+            continue
+        assertContains(create_service_request, f'name="service-{field.name}"')
 
 def test_submit_btn_present(create_service_request):
     assertContains(create_service_request, f'<button type="submit"')
@@ -67,7 +67,7 @@ def create_service_post(client, user, tags):
 #     assert not create_service_post.context['service_form'].errors
 
 def test_create_service_redirection(create_service_post):
-    assertRedirects(create_service_post, reverse('core:create_service'))
+    assertRedirects(create_service_post, reverse('core:index'))
 
 def test_base_service_exists(create_service_post):
     assert BaseProduct.objects.exists()
@@ -116,7 +116,7 @@ def test_edit_service_status_code(get_edit_service):
     assert get_edit_service.status_code == 200
 
 def test_edit_form_present(get_edit_service, service):
-    form = get_edit_service.context['form']
+    form = get_edit_service.context['base_form']
     for field in form:
         assertContains(get_edit_service, f'name="base-{field.name}"')
     assertContains(get_edit_service, f'<form action="{reverse("core:edit_service", kwargs={"pk":service.pk})}"')

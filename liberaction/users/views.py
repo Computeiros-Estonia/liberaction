@@ -23,6 +23,7 @@ def register(request):
     context = {
         'title': 'Registration',
         'form': form,
+        'gender_choices': User.GENDER_CHOICES,
     }
     return render(request, 'users/register.html', context)
 
