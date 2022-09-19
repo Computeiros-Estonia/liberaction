@@ -140,10 +140,10 @@ body {
 
 .login-box {
     background-color: #fff;
+    margin: -30px 20px;
     width: 450px;
     height: 450px;
     border-radius: 15px;
-    position: absolute;
     top: 105px;
     display: flex;
     flex-direction: column;
@@ -316,6 +316,16 @@ body {
     cursor: pointer;
 }
 
+input[type=submit] { 
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    height: 40px;
+    width: 300px;
+    background-color: #ffad17;
+    cursor: pointer;
+}
+
 .container-form p {
     margin: 5px;
 }
@@ -337,7 +347,7 @@ body {
     text-align: center;
 }
 .cadastro-box {
-    margin: 5px auto;
+    margin: -30px 20px;
     background-color: #fff;
     width: auto;
     height: auto;
