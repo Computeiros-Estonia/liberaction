@@ -1,4 +1,4 @@
-{% extends 'core/base.html' %}
+{% extends 'core/base_alt.html' %}
 {% block content %}
 
 <a href="{% url 'core:index' %}"></a>
@@ -44,7 +44,7 @@
                 </div>
 
                 <div class="single-input">
-                    <input type="text" class="description-input" id="id_base-description" name="base-description" required>
+                    <textarea class="description-input" name="base-description" cols="40" rows="10" required id="id_base-description"></textarea>
                     <label for="id_base-description">Descrição do serviço:</label>
                 </div>
 
@@ -53,7 +53,9 @@
                     <input type="file" id="id_imgs" name="imgs" multiple required>
                 </div>
 
-                <button type="submit">Anunciar Agora!</button>
+                <div class="single-input">
+                <input type="submit" value="Anunciar Agora!"></input>
+                </div>
 
             </div>
         </div>
