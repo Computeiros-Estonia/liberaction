@@ -1,0 +1,120 @@
+{% extends 'core/base.html' %}
+{% block content %}
+           
+    <!-- Single Product Details -->
+    <div class="small-container single-product">
+        <div class="row">
+            <div class="col-2">
+                {% for pic in product.get_pictures %}
+                    {% if forloop.first %}
+                        <img src="{{ pic.img.url }}" alt="" width="100%" id="ProductImg">
+                        <div class="small-img-row">
+                    {% else %}
+                        <div class="small-img-col">
+                            <img src="{{ pic.img.url }}" alt="" width="100%" class="small-img">
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                </div>
+            </div> 
+
+            <div class="col-2">
+                {% comment %} <p>Home / Moda Ancap</p> {% endcomment %}
+                <h1>{{ product.name }}</h1>
+                <div class="container-rating">
+                    <div class="rating">
+                        <input type="radio" name="star" id="star1"><label for="star1">
+                        </label>
+                        <input type="radio" name="star" id="star2"><label for="star2">
+                        </label>
+                        <input type="radio" name="star" id="star3"><label for="star3">
+                        </label>
+                        <input type="radio" name="star" id="star4"><label for="star4">
+                        </label>
+                        <input type="radio" name="star" id="star5"><label for="star5">
+                        </label>
+                    </div>
+                </div>
+                <h4>R$ {{ product.price }}</h4>
+                <select>
+                    <option>Tamanho</option>
+                    <option>GG</option>
+                    <option>G</option>
+                    <option>M</option>
+                    <option>P</option>
+                    <option>PP</option>
+                </select>
+                <input type="number" value="1"><br>
+                <a href="" class="btn"> Comprar Agora</a> 
+                <a href="" class="btn">Adicione no carrinho</a>
+                {% if product.owner == request.user %}
+                    <a href="{% url 'core:edit_product' product.pk %}" class="btn">Editar Produto</a>
+                {% endif %}
+                <h3>Detalhes do Produto</h3>
+                <br>
+
+                {% comment %} <a id="about_btn" class="btn">Sobre</a> <a id="metrics_btn" class="btn">Medidas,etc...</a> {% endcomment %}
+                <p id="product_description">{{ product.description }}</p>
+            </div>
+   
+        </div>
+    </div>
+
+   <!-- You can also be interested in  -->
+
+   <div class="categories">
+        <div class="small-container">
+            <h2 class="title">Você também pode se interessar</h2>
+            <div class="row">
+                <div class="col-3">
+                    <img src="images/category-1.jpg" alt="">
+                    <h4>Produto 1</h4>
+                </div>
+
+                <div class="col-3">
+                    <img src="images/category-2.jpg" alt="">
+                    <h4>Produto 2</h4>
+                </div>
+
+                <div class="col-3">
+                    <img src="images/category-3.jpg" alt="">
+                    <h4>Produto 3</h4>
+                </div>
+            </div> 
+        </div>  
+    </div>       
+
+    <!-- Questions Start  -->
+    <div class="categories">
+        <div class="small-container">
+            <h2 class="title">Perguntas, avaliações, e mais</h2>
+        </div>  
+        <div class="small-container">
+            <div class="container-asks">
+                <input type="text" placeholder="Digite seu comentário">
+                <a href="" class="btn"> Comente</a> 
+            </div>
+        </div>  
+    </div>    
+    
+</div>
+
+    <script>
+        var ProductImg = document.getElementById("ProductImg");
+        var SmallImg = document.getElementsByClassName("small-img")
+        SmallImg[0].onclick = function(){
+            ProductImg.src = SmallImg[0].src  
+        }
+        SmallImg[1].onclick = function(){
+            ProductImg.src = SmallImg[1].src  
+        }
+        SmallImg[2].onclick = function(){
+            ProductImg.src = SmallImg[2].src  
+        }
+        SmallImg[3].onclick = function(){
+            ProductImg.src = SmallImg[3].src  
+        }
+    </script>
+    <script src="/Beta Pages/Main Page/produto.js"></script>
+
+{% endblock content %}

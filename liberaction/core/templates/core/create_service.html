@@ -6,13 +6,13 @@
 <div>
     <form action="{% url 'core:create_service' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ base_form.owner }}
+        {{ form.owner }}
         <div class="container-form">
             <div class="container-form">
                 <div class="cadastro-box">
-                    {% if base_form.errors %}
+                    {% if form.errors %}
                         <ul>
-                        {% for err in base_form.errors %}
+                        {% for err in form.errors %}
                             <li>{{ err.message }}</li>
                         {% endfor %}
                         </ul>
@@ -27,25 +27,25 @@
                     {% endif %}
 
                     <h2>Fale um pouco sobre o serviço que quer anunciar =D </h2>
-                    {{ base_form.tags }}
+                    {{ form.tags }}
 
                     <div class="single-input">
-                        <input type="text" class="input" id="id_base-name" name="base-name" required>
-                        <label for="id_base-name">Nome do Serviço</label>
+                        <input type="text" class="input" id="id_name" name="name" required>
+                        <label for="id_name">Nome do Serviço</label>
                     </div>
                     
                     <div class="single-input">
-                        <input type="number" class="number-input" id="id_base-price" name="base-price" required>
-                        <label for="id_base-price">Preço</label>
+                        <input type="number" class="number-input" id="id_price" name="price" required>
+                        <label for="id_price">Preço</label>
 
                         <!-- <div class="check"></div>Valor a negociar -->
-                        {{ service_form.is_negotiable.label }}
-                        {{ service_form.is_negotiable }}
+                        {{ form.is_negotiable.label }}
+                        {{ form.is_negotiable }}
                     </div>
 
                     <div class="single-input">
-                        <input type="text" class="description-input" id="id_base-description" name="base-description" required>
-                        <label for="id_base-description">Descrição do serviço</label>
+                        <input type="text" class="description-input" id="id_description" name="description" required>
+                        <label for="id_description">Descrição do serviço</label>
                     </div>
 
                     <label for="id_imgs">Fotos</label>

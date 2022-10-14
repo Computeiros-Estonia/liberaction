@@ -10,16 +10,11 @@ from liberaction.core.models import BaseProduct, Product
 
 @pytest.fixture
 def produtos(user):
-    base_products = [
-        BaseProduct.objects.create(name='Camiseta',owner=user, description='Awesome t-shirts', price=100),
-        BaseProduct.objects.create(name='Computador Gamer',owner=user, description='Awesome speed', price=100),
-        BaseProduct.objects.create(name='Suplementos',owner=user, description='Awesome stuff', price=100),
+    return [
+        Product.objects.create(name='Camiseta',owner=user, description='Awesome t-shirts', price=100),
+        Product.objects.create(name='Computador Gamer',owner=user, description='Awesome speed', price=100),
+        Product.objects.create(name='Suplementos',owner=user, description='Awesome stuff', price=100),
     ]
-    products = []
-    for p in base_products:
-        product = Product.objects.create(base=p)
-        products.append(product)
-    return products
 
 @pytest.fixture
 def resposta_index(client, user, produtos):

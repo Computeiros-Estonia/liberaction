@@ -20,7 +20,7 @@
         <div class="small-container">
             <h2 class="title">Destaques</h2>
             <div class="row">
-                {% for product in base_products|slice:":4" %}
+                {% for product in products|slice:":4" %}
                 <div class="col-4">
                     <img src="{{ product.get_first_picture.img.url }}" alt="">
                     <h4>{{ product.name }}</h4>
@@ -105,7 +105,7 @@
                 <h2 class="title">Mais Procurados</h2>
                 <div class="row">
                     <div class="row">
-                        {% for product in popular_bp|slice:":4" %}
+                        {% for product in pop_products|slice:":4" %}
                         <div class="col-4">
                             <img src="{{ product.get_first_picture.img.url }}" alt="">
                             <h4>{{ product.name }}</h4>
