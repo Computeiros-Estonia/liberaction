@@ -6,8 +6,6 @@
 <div>
     <form action="{% url 'core:create_product' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {% comment %} {{ base_form.as_p }}
-        {{ product_form.as_p }} {% endcomment %}
         <div class="container-form">
             <div class="cadastro-box">
                 <input type="hidden" name="csrfmiddlewaretoken" value="jxh6U5fexxWKH6XswrJs7FWMOdVSyTbZ6P11FvhIJ7ebBqxhFbqjfrATdxnJbFcC">
@@ -17,25 +15,24 @@
                 </div>
 
                 <div class="single-input">
-                    <select name="base-tags" id="id_base-tags" multiple></select>
-                    <label for="id_base-tags">Tags:</label>
+                    <select name="tags" id="id_tags" multiple></select>
+                    <label for="id_tags">Tags:</label>
                 </div>
 
                 <div class="single-input">
-                <input class="input" type="text" name="base-name" maxlength="50" required id="id_base-name">
-                <label for="id_base-name">Nome:</label>
+                <input class="input" type="text" name="name" maxlength="50" required id="id_name">
+                <label for="id_name">Nome:</label>
                 </div>
 
                 <div style="margin-bottom: 10px;">
-                    <label for="id_product-is_new">Novo:</label>
-                    <input type="checkbox" name="product-is_new" id="id_product-is_new" checked>
-                    <input type="hidden" name="product-base" disabled id="id_product-base">
+                    <label for="id_is_new">Novo:</label>
+                    <input type="checkbox" name="is_new" id="id_is_new" checked>
                 </div>
         
                 <div class="single-input">
-                    <input class="number-input" type="number" name="base-price" step="any" required id="id_base-price">
-                    <input type="hidden" name="base-owner" disabled id="id_base-owner">
-                    <label for="id_base-price">Preço:</label>
+                    <input class="number-input" type="number" name="price" step="any" required id="id_price">
+                    <input type="hidden" name="owner" disabled id="id_owner">
+                    <label for="id_price">Preço:</label>
                     <!-- <div class="check"></div>Valor a negociar -->
                     <div>
                         Negociável
@@ -44,8 +41,8 @@
                 </div>
 
                 <div class="single-description-input">
-                    <textarea class="description-input" name="base-description" cols="40" rows="10" required id="id_base-description"></textarea>
-                    <label for="id_base-description">Descrição:</label>
+                    <textarea class="description-input" name="description" cols="40" rows="10" required id="id_description"></textarea>
+                    <label for="id_description">Descrição:</label>
                 </div>
 
                 <label for="id_imgs">Fotos</label>

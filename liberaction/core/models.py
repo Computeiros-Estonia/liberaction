@@ -43,56 +43,25 @@ class BaseProduct(models.Model):
         return round(total / len(reviews), 1) if len(reviews) > 0 else 0
 
 
-class Service(models.Model):
-    base = models.OneToOneField(BaseProduct, on_delete=models.CASCADE)
+class Service(BaseProduct):
     is_negotiable = models.BooleanField(default=False, verbose_name='negociável')
 
     class Meta:
         verbose_name = 'serviço'
 
     def __str__(self):
-        return self.base.name
-
-    def get_name(self):
-        return self.base.name
-
-    def get_owner(self):
-        return self.base.owner
-
-    def get_description(self):
-        return self.base.description
-
-    def get_price(self):
-        return self.base.price
-
-    def get_pictures(self):
-        return self.base.get_pictures()
+        return self.name
 
 
-class Product(models.Model):
-    base = models.OneToOneField(BaseProduct, on_delete=models.CASCADE)
+class Product(BaseProduct):
     is_new = models.BooleanField(default=True, verbose_name='novo')
 
     class Meta:
         verbose_name = 'produto'
 
     def __str__(self):
-        return self.base.name
+        return self.name
     
-    def get_name(self):
-        return self.base.name
-
-    def get_owner(self):
-        return self.base.owner
-
-    def get_description(self):
-        return self.base.description
-
-    def get_price(self):
-        return self.base.price
-
-    def get_pictures(self):
-        return self.base.get_pictures()
 
 class Album(models.Model):
     base_product = models.ForeignKey(BaseProduct, on_delete=models.CASCADE, verbose_name='produto')
