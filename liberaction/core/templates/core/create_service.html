@@ -18,9 +18,9 @@
                     </ul>
                 {% endif %}
 
-                {% if service_form.errors %}
+                {% if form.errors %}
                     <ul>
-                    {% for err in service_form.errors %}
+                    {% for err in form.errors %}
                         <li>{{ err.message }}</li>
                     {% endfor %}
                     </ul>
@@ -30,7 +30,7 @@
                 {{ form.tags }}
 
                 <div class="single-input">
-                    <input type="text" class="input" id="id_name" name="base-name" required>
+                    <input type="text" class="input" id="id_name" name="name" required>
                     <label for="id_name">Nome do Serviço:</label>
                 </div>
                 
@@ -39,8 +39,8 @@
                     <label for="id_price">Preço:</label>
 
                     <!-- <div class="check"></div>Valor a negociar -->
-                    {{ service_form.is_negotiable.label }}
-                    {{ service_form.is_negotiable }}
+                    {{ form.is_negotiable.label }}
+                    {{ form.is_negotiable }}
                 </div>
 
                 <div class="single-input">
