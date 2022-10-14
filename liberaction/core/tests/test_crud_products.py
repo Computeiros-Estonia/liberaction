@@ -4,7 +4,7 @@ from pathlib import Path
 from django.urls import reverse
 from pytest_django.asserts import assertContains, assertRedirects
 
-from liberaction.core.models import Album, BaseProduct, Picture, Product, Tag
+from liberaction.core.models import Album, Picture, Product, Tag
 
 # Create
 
@@ -18,9 +18,9 @@ def test_create_product_status_code(create_product_request):
     assert create_product_request.status_code == 200
 
 def test_form_present(create_product_request):
-    form = create_product_request.context['base_form']
+    form = create_product_request.context['form']
     for field in form:
-        assertContains(create_product_request, f'name="base-{field.name}"')
+        assertContains(create_product_request, f'name="{field.name}"')
     assertContains(create_product_request, f'<form action="{reverse("core:create_product")}"')
 
 def test_submit_btn_present(create_product_request):
@@ -46,27 +46,21 @@ def create_product_post(client, user, tags):
     # Response
     client.force_login(user)
     return client.post(reverse('core:create_product'), data={
-        'base-name': 'Web Development',
-        'base-tags': [t.id for t in tags],
-        'base-owner': user.id,
-        'base-description': 'Awesome stuff.',
-        'base-price': 1000,
-        'base-images': img_list,
-        'product-is_new': True,
+        'name': 'Web Development',
+        'tags': [t.id for t in tags],
+        'owner': user.id,
+        'description': 'Awesome stuff.',
+        'price': 1000,
+        'images': img_list,
+        'is_new': True,
     })
 
 # For debugging purposes only, do not uncomment
-# def test_base_form_is_valid(create_product_post):
-#     assert not create_product_post.context['base_form'].errors
-
 # def test_product_form_is_valid(create_product_post):
-#     assert not create_product_post.context['product_form'].errors
+#     assert not create_product_post.context['form'].errors
 
 def test_create_product_redirection(create_product_post):
-    assertRedirects(create_product_post, reverse('core:create_product'))
-
-def test_base_product_exists(create_product_post):
-    assert BaseProduct.objects.exists()
+    assertRedirects(create_product_post, reverse('core:index'))
 
 def test_product_exists(create_product_post):
     assert Product.objects.exists()
@@ -78,17 +72,16 @@ def test_album_exists(create_product_post):
 # Read
 @pytest.fixture
 def product(user):
-    base = BaseProduct.objects.create(
+    return Product.objects.create(
         name='Web dev',
         owner=user,
         description='Coll stuff',
         price=10000
     )
-    return Product.objects.create(base=base)
 
 @pytest.fixture
 def pictures(product):
-    album = Album.objects.create(base_product=product.base)
+    album = Album.objects.create(base_product=product)
     return [
         Picture.objects.create(img='test/pic1.jpg', index=0, album=album),
         Picture.objects.create(img='test/pic2.jpg', index=1, album=album),
@@ -106,12 +99,12 @@ def test_product_page_status_code(get_product_response):
     assert get_product_response.status_code == 200
 
 def test_product_present(get_product_response, product):
-    assertContains(get_product_response, product.base.name)
-    assertContains(get_product_response, product.base.owner)
-    assertContains(get_product_response, product.base.description)
+    assertContains(get_product_response, product.name)
+    assertContains(get_product_response, product.price)
+    assertContains(get_product_response, product.description)
 
 def test_product_img_present(get_product_response, product):
-    for pic in product.base.get_pictures():
+    for pic in product.get_pictures():
         assertContains(get_product_response, pic.img.url)
 
 
@@ -125,9 +118,9 @@ def test_edit_product_status_code(get_edit_product):
     assert get_edit_product.status_code == 200
 
 def test_edit_form_present(get_edit_product, product):
-    form = get_edit_product.context['base_form']
+    form = get_edit_product.context['form']
     for field in form:
-        assertContains(get_edit_product, f'name="base-{field.name}"')
+        assertContains(get_edit_product, f'name="{field.name}"')
     assertContains(get_edit_product, f'<form action="{reverse("core:edit_product", kwargs={"pk":product.pk})}"')
 
 def test_edit_submit_btn_present(get_edit_product):
@@ -137,20 +130,20 @@ def test_edit_submit_btn_present(get_edit_product):
 def post_edit_product(client, product, user, tags):
     client.force_login(user)
     return client.post(reverse('core:edit_product', kwargs={'pk':product.pk}), data={
-        'base-name': 'Web Development',
-        'base-tags': [t.id for t in tags],
-        'base-owner': user.id,
-        'base-description': 'Awesome stuff.',
-        'base-price': 1,
-        'base-images': '',
-        'product-is_new': True,
+        'name': 'Web Development',
+        'tags': [t.id for t in tags],
+        'owner': user.id,
+        'description': 'Awesome stuff.',
+        'price': 1,
+        'images': '',
+        'is_new': True,
     })
 
 def test_edit_product_redirection(post_edit_product, product):
     assertRedirects(post_edit_product, reverse('core:product', kwargs={'pk':product.pk}))
 
 def test_product_edited(post_edit_product):
-    assert Product.objects.first().get_price() == 1
+    assert Product.objects.first().price == 1
 
 
 # Delete

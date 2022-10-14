@@ -50,22 +50,7 @@ class Service(BaseProduct):
         verbose_name = 'serviço'
 
     def __str__(self):
-        return self.base.name
-
-    def get_name(self):
-        return self.base.name
-
-    def get_owner(self):
-        return self.base.owner
-
-    def get_description(self):
-        return self.base.description
-
-    def get_price(self):
-        return self.base.price
-
-    def get_pictures(self):
-        return self.base.get_pictures()
+        return self.name
 
 
 class Product(BaseProduct):
@@ -75,22 +60,8 @@ class Product(BaseProduct):
         verbose_name = 'produto'
 
     def __str__(self):
-        return self.base.name
+        return self.name
     
-    def get_name(self):
-        return self.base.name
-
-    def get_owner(self):
-        return self.base.owner
-
-    def get_description(self):
-        return self.base.description
-
-    def get_price(self):
-        return self.base.price
-
-    def get_pictures(self):
-        return self.base.get_pictures()
 
 class Album(models.Model):
     base_product = models.ForeignKey(BaseProduct, on_delete=models.CASCADE, verbose_name='produto')
