@@ -14,11 +14,6 @@ class BaseProductForm(forms.ModelForm):
         fields = '__all__'
 
 class ProductForm(forms.ModelForm):
-    base = forms.ModelChoiceField(
-        queryset=BaseProduct.objects.all(),
-        required=False, disabled=True,
-        widget=forms.HiddenInput()
-    )
     class Meta:
         model = Product
         fields = '__all__'

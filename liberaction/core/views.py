@@ -19,38 +19,30 @@ def index(request):
 @login_required(login_url='/users/login/')
 def create_product(request):
     if request.method == 'POST':
-        base_form = BaseProductForm(request.POST, request.FILES, prefix='base', initial={'owner': request.user.id})
-        product_form = ProductForm(request.POST, prefix='product')
-        if base_form.is_valid():
-            base_product = base_form.save()
-            product_form = ProductForm(request.POST, initial={'base': base_product}, prefix='product')
-            if product_form.is_valid():
-                product_form.save()
-                messages.success(request, 'Produto adicionado com sucesso!')
-                if request.FILES:
-                    album = Album.objects.create(base_product=base_product)
-                    try:
-                        files = request.FILES.getlist('images')
-                        i=0
-                        for img in files:
-                            Picture.objects.create(img=img, index=i, album=album)
-                            i+=1
-                        return redirect('core:create_product')
-                    except Exception as e:
-                        messages.error(request, 'Falha ao fazer o upload das fotos.')
-                        album.delete()
-            else:
-                messages.error(request, 'Falha ao criar produto.')
-                base_product.delete()
-
+        # base_form = BaseProductForm(request.POST, request.FILES, prefix='base', initial={'owner': request.user.id})
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            product = form.save()
+            messages.success(request, 'Produto adicionado com sucesso!')
+            if request.FILES:
+                album = Album.objects.create(base_product=product.base_product)
+                try:
+                    files = request.FILES.getlist('imgs')
+                    i=0
+                    for img in files:
+                        Picture.objects.create(img=img, index=i, album=album)
+                        i+=1
+                    return redirect('core:create_product')
+                except Exception as e:
+                    messages.error(request, 'Falha ao fazer o upload das fotos.')
+                    album.delete()
     else:
-        base_form = BaseProductForm(prefix='base', initial={'owner': request.user.id})
-        product_form = ProductForm(prefix='product')
+        # base_form = BaseProductForm(prefix='base', initial={'owner': request.user.id})
+        form = ProductForm()
     
     context = {
         'title': 'Cadastro de Produto',
-        'base_form': base_form,
-        'product_form': product_form,
+        'form': form,
     }
     return render(request, 'core/create_product.html', context)
 

@@ -43,8 +43,7 @@ class BaseProduct(models.Model):
         return round(total / len(reviews), 1) if len(reviews) > 0 else 0
 
 
-class Service(models.Model):
-    base = models.OneToOneField(BaseProduct, on_delete=models.CASCADE)
+class Service(BaseProduct):
     is_negotiable = models.BooleanField(default=False, verbose_name='negociável')
 
     class Meta:
@@ -69,8 +68,7 @@ class Service(models.Model):
         return self.base.get_pictures()
 
 
-class Product(models.Model):
-    base = models.OneToOneField(BaseProduct, on_delete=models.CASCADE)
+class Product(BaseProduct):
     is_new = models.BooleanField(default=True, verbose_name='novo')
 
     class Meta:
