@@ -32,12 +32,14 @@
                         <input type="text" class="input" id="id_last_name" name="last_name" required>
                         <label for="id_last_name">Sobrenome</label>
                     </div>
-                    {% for choices in gender_choices %}
-                        <div class="single-input">
-                            <input type="radio" class="input" id="id_gender" name="gender" value="{{ choices|first }}">
-                            <label for="id_gender">{{ choices|last }}</label>
+                    <div style="display: inline-flex;">
+                        {% for choices in gender_choices %} 
+                            <div>
+                                <input type="radio" id="id_gender" name="gender" style="margin-inline: 5px;" value="{{ choices|first }}">
+                                <label for="id_gender">{{ choices|last }}</label>
+                            </div>
+                        {% endfor %}
                         </div>
-                    {% endfor %}
 
                     <div class="single-input">
                         <input type="date" class="input" id="id_birth_date" name="birth_date" required>

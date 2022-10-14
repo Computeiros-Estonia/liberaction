@@ -134,7 +134,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 500px;
+    position: relative;
+    height: auto;
 }
 
 .login-box {
@@ -156,6 +157,20 @@ body {
     margin-bottom: 35px;
 }
 
+.single-description-input {
+    position: relative;
+    margin: 15px 0;
+    display: flex;
+}
+.single-description-input label {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    color: rgb(150,150,150);
+    cursor: text;
+    transition: 0.5s ease-in-out;
+}
+
 .description-input{
     position: relative;
     margin: 0px 0;
@@ -173,7 +188,7 @@ body {
 
 .description-input label {
     position: absolute;
-    bottom: 100px;
+    top: 5px;
     left: 5px;
     color: rgb(150,150,150);
     cursor: text;
@@ -193,7 +208,8 @@ body {
     border: 2px solid #ffad17;
 }
 .description-input:focus ~ label, .description-input:valid ~ label {
-    transform: translateY(-245px);
+    position: absolute;
+    top: -15px;
     font-size: 12px;
     color: black;
 }
@@ -247,7 +263,8 @@ body {
     border: 2px solid #ffad17;
 }
 .number-input:focus ~ label, .number-input:valid ~ label {
-    transform: translateY(-20px);
+    position: absolute;
+    top: -25px;
     font-size: 12px;
     color: black;
 }
@@ -259,22 +276,7 @@ body {
 }
 .single-input label {
     position: absolute;
-    bottom: 10px;
-    left: 5px;
-    color: rgb(150,150,150);
-    cursor: text;
-    transition: 0.5s ease-in-out;
-}
-
-.description-input {
-    position: relative;
-    margin: 15px 0;
-    display: flex;
-}
-
-.description-input label {
-    position: absolute;
-    bottom: 10px;
+    top: 5px;
     left: 5px;
     color: rgb(150,150,150);
     cursor: text;
@@ -282,6 +284,7 @@ body {
 }
 
 .input {
+    position: relative;
     width: 300px;
     height: 40px;
     padding: 5px;
@@ -297,7 +300,8 @@ body {
     border: 2px solid #ffad17;
 }
 .input:focus ~ label, .input:valid ~ label {
-    transform: translateY(-30px);
+    position: absolute;
+    top: -15px;
     font-size: 12px;
     color: black;
 }
@@ -327,16 +331,19 @@ body {
     margin: 5px;
 }
 
+.titulo-formulario{
+    width: auto;
+    max-width: 450px;
+    text-align: center;
+}
 .cadastro-box {
+    margin: 5px auto;
     background-color: #fff;
-    width: 450px;
-    height: 830px;
+    width: auto;
+    height: auto;
     border-radius: 15px;
-    position: absolute;
-    top: 105px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     padding: 40px;
 }

@@ -6,10 +6,58 @@
 <div>
     <form action="{% url 'core:create_product' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="file" id="id_imgs" name="imgs" multiple>
-        <button type="submit">Submit</button>
+        <div class="container-form">
+            <div class="cadastro-box">
+                <input type="hidden" name="csrfmiddlewaretoken" value="jxh6U5fexxWKH6XswrJs7FWMOdVSyTbZ6P11FvhIJ7ebBqxhFbqjfrATdxnJbFcC">
+                
+                <div class="titulo-formulario">
+                    <h2>Fale um pouco sobre o produto que quer anunciar =D</h2>
+                </div>
+
+                <div class="single-input">
+                    <select name="tags" id="id_tags" multiple></select>
+                    <label for="id_tags">Tags:</label>
+                </div>
+
+                <div class="single-input">
+                <input class="input" type="text" name="name" maxlength="50" required id="id_name">
+                <label for="id_name">Nome:</label>
+                </div>
+
+                <div style="margin-bottom: 10px;">
+                    <label for="id_product-is_new">Novo:</label>
+                    <input type="checkbox" name="product-is_new" id="id_product-is_new" checked>
+                    <input type="hidden" name="product-base" disabled id="id_product-base">
+                </div>
+        
+                <div class="single-input">
+                    <input class="number-input" type="number" name="price" step="any" required id="id_price">
+                    <input type="hidden" name="owner" disabled id="id_owner">
+                    <label for="id_price">Preço:</label>
+                    <!-- <div class="check"></div>Valor a negociar -->
+                    <div>
+                        Negociável
+                        <input type="checkbox" style="margin-left: 3px;">
+                    </div>
+                </div>
+
+                <div class="single-description-input">
+                    <textarea class="description-input" name="description" cols="40" rows="10" required id="id_description"></textarea>
+                    <label for="id_description">Descrição:</label>
+                </div>
+
+                <label for="id_imgs">Fotos</label>
+                <div class="single-input">
+                    <input type="file" id="id_imgs" name="imgs" multiple required>
+                </div>
+                
+                <div class="single-input">
+                    <button type="submit">Submit</button>
+                </div>
+            </div>
+        </div>
     </form>
 </div>
+
 
 {% endblock content %}
