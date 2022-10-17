@@ -920,6 +920,8 @@ transform: translate(-50%, -50%) scale(2.8);
 
 .info-user-card:nth-child(1) {
     cursor:default;
+    flex-direction: row;
+    padding: 3px;
 }
 
 .info-user-card p {
