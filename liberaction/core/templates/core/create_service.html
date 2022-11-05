@@ -27,7 +27,22 @@
                 {% endif %}
 
                 <div class="titulo-formulario"><h2>Fale um pouco sobre o serviço que quer anunciar =D </h2></div>
-                {{ base_form.tags }}
+
+                {% comment %} {{ base_form.tags }} {% endcomment %}
+
+                <div class="tags-container">
+                    
+                    <div>
+                    <p>As tags são úteis para que as pessoas consigam buscar seus produtos, principalmente por associações.</p>
+                    </div>
+
+                    <textarea class="description-input" name="base-description" cols="40" rows="10" required id="id_base-description"></textarea>
+
+                    <div style="display: flex; justify-content: space-between;">
+                        <div><p>Insira uma vírgula depois de cada tag:</p></div>
+                        <div><p>xx/100</p></div>
+                    </div>
+                </div>
 
                 <div class="single-input">
                     <input type="text" class="input" id="id_base-name" name="base-name" required>
@@ -51,6 +66,43 @@
                 <label for="id_imgs">Fotos</label>
                 <div class="single-input">
                     <input type="file" id="id_imgs" name="imgs" multiple required>
+                </div>
+
+                <div class="picture-container-picturebox">
+                    <div class="picture-container-picturebox-add">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="95%" height="95%" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                        </svg>
+                    </div>
+                    
+                    <div class="picture-container-picturebox-cover">
+                        <div class="picture-container-picturebox-cover-imagewrapper">
+                            <img src="static/images/product-10.jpg" alt="">
+                        </div>
+                        <p>Capa</p>
+                    </div>
+
+                    <div class="picture-container-picturebox-picture">
+                        <img src="static/images/product-5.jpg" alt="">
+                    </div>
+
+                    <div class="picture-container-picturebox-picture">
+                        <img src="static/images/product-8.jpg" alt="">
+                    </div>
+
+                    <div class="picture-container-picturebox-picture">
+                        <img src="static/images/product-7.jpg" alt="">
+                    </div>
+
+                    <div class="picture-container-picturebox-more">
+                        <div style="display: grid; grid-template-columns: repeat(3, 30%); gap: 3px;height: 98%;width: 33%;">
+                        <div class="picture-container-picturebox-more-bar"></div>
+                        <div class="picture-container-picturebox-more-bar"></div>
+                        <div class="picture-container-picturebox-more-bar"></div>
+                        </div>
+                        <div class="picture-container-picturebox-more-counter"><p>+3</p></div>
+                    </div>
+                    
                 </div>
 
                 <div class="single-input">
