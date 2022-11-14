@@ -1,0 +1,23 @@
+{% comment %} Este é o "div" que dever aparecer em cima de qualquer página caso o usuário não tenha optado por aceitar ou rejeitar os cookies.
+Esta janela deve sumir após o usuário ter optado por uma das opções. {% endcomment %}
+ 
+
+<div class="cookies-container">
+    <button type="button" class="btn-close" aria-label="Close"></button>
+
+    <h1>Consentimento de cookies:</h1>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl pretium fusce id velit ut.</p> {% comment %} Texto explicativo sobre cookies {% endcomment %}
+
+    <div class="cookies-container-buttons">
+        <div>
+            <button type="button" class="btn btn-link">Definição de cookies</button>
+            {% comment %} botão de opções detalhadas de cookies -> deve levar para o "div" de opçoes detalhadas {% endcomment %}
+        </div>
+
+        <div>
+            <button type="button" class="btn btn-primary">Rejeitar</button>
+            <button type="button" class="btn btn-primary">Aceitar os Cookies</button>
+        </div>
+    </div>
+</div>
