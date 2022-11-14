@@ -28,21 +28,7 @@
 
                 <div class="titulo-formulario"><h2>Fale um pouco sobre o serviço que quer anunciar =D </h2></div>
 
-                {% comment %} {{ base_form.tags }} {% endcomment %}
-
-                <div class="tags-container">
-                    
-                    <div>
-                    <p>As tags são úteis para que as pessoas consigam buscar seus produtos, principalmente por associações.</p>
-                    </div>
-
-                    <textarea class="description-input" name="base-description" cols="40" rows="10" required id="id_base-description"></textarea>
-
-                    <div style="display: flex; justify-content: space-between;">
-                        <div><p>Insira uma vírgula depois de cada tag:</p></div>
-                        <div><p>xx/100</p></div>
-                    </div>
-                </div>
+                {{ base_form.tags }}
 
                 <div class="single-input">
                     <input type="text" class="input" id="id_base-name" name="base-name" required>
